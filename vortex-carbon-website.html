@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vortex Carbon Ltd – Gas, Heating & Plumbing | North Norfolk</title>
+  <meta name="description" content="Gas Safe registered engineer covering Hunstanton and North Norfolk. Boiler repairs, servicing, CP12 certificates, plumbing and air conditioning." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B3A6B;
+      --navy-dark: #122a52;
+      --green: #6ab04c;
+      --green-dark: #57933d;
+      --light: #f7f9fc;
+      --white: #ffffff;
+      --gray: #666;
+      --border: #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    .sticky-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+
+    /* White top bar */
+    .header-top {
+      background: #ffffff;
+      padding: 14px 5%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      border-bottom: 1px solid #e8edf4;
+    }
+
+    .logo-spin-container {
+      display: inline-block;
+      grid-column: 2;
+    }
+
+    .logo-spin-container img { height: 80px; display: block; }
+
+    .header-phone {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+
+    .header-phone:hover { color: var(--green); }
+
+    /* Dark nav row */
+    nav {
+      background: rgba(27, 58, 107, 0.98);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--green-dark) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4d2b 100%);
+      display: flex;
+      align-items: center;
+      padding: 118px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* ── HERO VISUAL (right column) ── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual-wrap {
+      position: relative;
+      width: 360px;
+      height: 360px;
+    }
+
+    .hv-ring-outer {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 1px dashed rgba(106,176,76,0.22);
+      animation: hvSpin 50s linear infinite;
+    }
+
+    .hv-ring-outer::before {
+      content: '';
+      position: absolute;
+      top: -6px; left: 50%; transform: translateX(-50%);
+      width: 12px; height: 12px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .hv-ring-mid {
+      position: absolute; inset: 48px;
+      border-radius: 50%;
+      border: 2px solid rgba(106,176,76,0.14);
+    }
+
+    .hv-center {
+      position: absolute; inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px;
+    }
+
+    .hv-center-logo {
+      width: 200px;
+      filter: drop-shadow(0 0 24px rgba(106,176,76,0.35));
+      margin-bottom: 16px;
+    }
+
+    .hv-center-label {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hv-center-num {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    .hv-center-sub {
+      color: rgba(255,255,255,0.55);
+      font-size: 10px;
+    }
+
+    @keyframes hvSpin { to { transform: rotate(360deg); } }
+
+    .hv-badge {
+      position: absolute;
+      background: rgba(8,15,30,0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .hv-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      box-shadow: 0 0 6px var(--green);
+    }
+
+    .hv-badge-text { color: #fff; font-size: 12px; font-weight: 600; }
+    .hv-badge-sub  { color: rgba(255,255,255,0.5); font-size: 10px; }
+
+    .hv-b1 { top: 20px; right: -10px; animation: hvFloat 4s ease-in-out infinite; }
+    .hv-b2 { bottom: 70px; right: -20px; animation: hvFloat 4s ease-in-out 1.3s infinite; }
+    .hv-b3 { bottom: 20px; left: 0; animation: hvFloat 4s ease-in-out 2.6s infinite; }
+
+    @keyframes hvFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(106,176,76,0.15) 0%, transparent 70%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(106,176,76,0.1) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(106,176,76,0.15);
+      border: 1px solid rgba(106,176,76,0.4);
+      color: var(--green);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge span { width: 8px; height: 8px; background: var(--green); border-radius: 50%; display: inline-block; animation: blink 2s ease-in-out infinite; }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    h1 span { color: var(--green); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 560px;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--white);
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(106,176,76,0.4);
+    }
+
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(106,176,76,0.5); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 15px 30px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--white); }
+    .stat-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 5%; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 580px;
+      margin-bottom: 56px;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--light); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover { box-shadow: 0 12px 40px rgba(27,58,107,0.12); transform: translateY(-4px); border-color: transparent; }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, rgba(27,58,107,0.08), rgba(106,176,76,0.08));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .service-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ── WHY US ── */
+    #why { background: var(--white); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
+
+    .why-item {
+      text-align: center;
+      padding: 32px 20px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.5s;
+    }
+
+    .why-item.visible { opacity: 1; transform: translateY(0); }
+
+    .why-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--navy), #2a5298);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(27,58,107,0.25);
+    }
+
+    .why-item h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .why-item p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ── CREDENTIALS ── */
+    #credentials {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: var(--white);
+    }
+
+    #credentials h2 { color: var(--white); }
+    #credentials .section-label { color: var(--green); }
+
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .cred-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .cred-card.visible { opacity: 1; transform: translateY(0); }
+    .cred-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-3px); }
+
+    .cred-card .icon { font-size: 36px; margin-bottom: 14px; }
+    .cred-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .cred-card p { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+    /* ── COVERAGE ── */
+    #coverage { background: var(--light); }
+
+    .coverage-areas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .area-tag {
+      background: var(--white);
+      border: 2px solid var(--border);
+      color: var(--navy);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .area-tag.visible { opacity: 1; transform: scale(1); }
+    .area-tag:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h3 { font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.4s;
+    }
+
+    .contact-item.visible { opacity: 1; transform: translateX(0); }
+
+    .contact-item-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, rgba(27,58,107,0.08), rgba(106,176,76,0.08));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .contact-item-text { font-size: 14px; color: var(--gray); }
+    .contact-item-text strong { display: block; color: var(--navy); font-size: 15px; margin-bottom: 2px; }
+    .contact-item-text a { color: var(--navy); text-decoration: none; font-weight: 600; }
+    .contact-item-text a:hover { color: var(--green); }
+
+    .contact-cta {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      border-radius: 16px;
+      padding: 40px 36px;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .contact-cta h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+    .contact-cta p { color: rgba(255,255,255,0.7); margin-bottom: 28px; font-size: 15px; }
+
+    .contact-cta .btn-primary { display: block; text-align: center; font-size: 1.05rem; padding: 16px; }
+
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+      background: #25D366;
+      color: var(--white);
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .whatsapp-btn:hover { background: #1db954; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.6);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    footer img { height: 36px; opacity: 0.9; }
+    footer p { font-size: 13px; }
+    footer a { color: var(--green); text-decoration: none; }
+
+    /* ── TAGLINE BAR ── */
+    .tagline-bar {
+      background: var(--green);
+      padding: 14px 5%;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .tagline-bar span {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── STATS ── */
+    #stats {
+      background: var(--navy);
+      padding: 48px 5%;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat-box { padding: 10px; }
+    .stat-count {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-count .suffix { color: var(--green); }
+    .stat-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 6px;
+      letter-spacing: 0.3px;
+    }
+    .stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: auto;
+    }
+
+    /* ── LEISURE PARKS ── */
+    #leisure {
+      background: linear-gradient(160deg, #0c1f14 0%, #1a3a28 55%, #0c1f14 100%);
+      padding: 100px 5%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #leisure::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(106,176,76,0.07) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+
+    .leisure-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .leisure-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(106,176,76,0.15);
+      border: 1px solid rgba(106,176,76,0.35);
+      color: #6ab04c;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    #leisure .section-label { color: #6ab04c; }
+    #leisure h2 { color: #fff; }
+    #leisure .section-intro { color: rgba(255,255,255,0.65); }
+
+    .leisure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .leisure-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(106,176,76,0.2);
+      border-radius: 10px;
+      padding: 16px;
+      transition: all 0.25s;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .leisure-item.visible { opacity: 1; transform: translateY(0); }
+    .leisure-item:hover { background: rgba(106,176,76,0.1); border-color: rgba(106,176,76,0.45); }
+    .leisure-item .li-icon { font-size: 20px; margin-bottom: 8px; }
+    .leisure-item h4 { color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .leisure-item p { color: rgba(255,255,255,0.5); font-size: 12px; line-height: 1.5; }
+
+    .lodge-svg-wrap svg { width: 100%; max-width: 440px; }
+
+    /* ── REVIEWS ── */
+    #reviews {
+      background: var(--light);
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .stars { font-size: 28px; letter-spacing: 4px; margin-bottom: 12px; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+      text-align: left;
+    }
+
+    .review-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s;
+    }
+
+    .review-card.visible { opacity: 1; transform: translateY(0); }
+
+    .review-stars { color: #fbbc04; font-size: 16px; margin-bottom: 10px; }
+    .review-text { font-size: 14px; color: #444; line-height: 1.7; font-style: italic; margin-bottom: 14px; }
+    .review-author { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .review-source { font-size: 11px; color: #888; }
+
+    .google-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 2px solid var(--border);
+      color: var(--navy);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+
+    .google-btn:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(27,58,107,0.12); transform: translateY(-2px); }
+
+    /* ── BLUEPRINT ── */
+    #blueprint {
+      background: #080f1e;
+      padding: 100px 5%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #blueprint::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(106,176,76,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(106,176,76,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .blueprint-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .blueprint-text .section-label { color: #4fc3f7; }
+    .blueprint-text h2 { color: #fff; margin-bottom: 16px; }
+    .blueprint-text .section-intro { color: rgba(255,255,255,0.6); margin-bottom: 0; }
+
+    #blueprint-svg {
+      width: 100%;
+      max-width: 480px;
+      filter: drop-shadow(0 0 30px rgba(106,176,76,0.2));
+    }
+
+    #spin-element {
+      transform-origin: 250px 250px;
+      transition: transform 0.05s linear;
+    }
+
+    .pipe-path-animated {
+      stroke-dasharray: 1400;
+      stroke-dashoffset: 1400;
+    }
+
+    .bp-label {
+      fill: rgba(79,195,247,0.6);
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+    .bp-label.visible { opacity: 1; }
+
+    /* ── SCROLL ANIMATION ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .stat-num { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="sticky-header">
+    <div class="header-top">
+      <div class="logo-spin-container">
+        <img src="https://img1.wsimg.com/isteam/ip/5e726e31-6875-4e52-8355-b96ff701967c/48D1B516-918C-4A81-AE74-832ACCCCF290.png" alt="Vortex Carbon Ltd" />
+      </div>
+      <a href="tel:07568308119" class="header-phone">📞 07568 308 119</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#coverage">Coverage</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61589798134793" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#4267B2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.5h-2.79V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+          Facebook
+        </a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Get In Touch</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span></span> Gas Safe Registered · No. 973245
+        </div>
+        <h1>North Norfolk's<br/><span>Trusted Engineer</span></h1>
+        <p class="hero-sub">Gas, heating, plumbing and air conditioning — diagnosed correctly, repaired properly. No subcontracting. No upselling. Just reliable work done right.</p>
+        <div class="hero-btns">
+          <a href="tel:07568308119" class="btn-primary">📞 Call 07568 308 119</a>
+          <a href="https://wa.me/447568308119" class="btn-secondary">💬 WhatsApp Us</a>
+          <a href="mailto:lee@vortexcarbon.co.uk" class="btn-secondary">✉️ Email Us</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">Gas Safe</div>
+            <div class="stat-label">Registered & Insured</div>
+          </div>
+          <div>
+            <div class="stat-num">Same Day</div>
+            <div class="stat-label">Emergency Call-Outs</div>
+          </div>
+          <div>
+            <div class="stat-num">No Fuss</div>
+            <div class="stat-label">Transparent Pricing</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN VISUAL -->
+      <div class="hero-visual">
+        <div class="hero-visual-wrap">
+          <!-- Spinning outer ring with dot -->
+          <div class="hv-ring-outer"></div>
+          <!-- Mid ring -->
+          <div class="hv-ring-mid"></div>
+          <!-- Centre: Logo + Gas Safe number -->
+          <div class="hv-center">
+            <img class="hv-center-logo" src="https://img1.wsimg.com/isteam/ip/5e726e31-6875-4e52-8355-b96ff701967c/48D1B516-918C-4A81-AE74-832ACCCCF290.png" alt="Vortex Carbon Ltd" />
+            <div class="hv-center-label">Gas Safe</div>
+            <div class="hv-center-num">973245</div>
+            <div class="hv-center-sub">Registration No.</div>
+          </div>
+          <!-- Floating credential badges -->
+          <div class="hv-badge hv-b1">
+            <div class="hv-badge-dot"></div>
+            <div>
+              <div class="hv-badge-text">10,000+ Gas Tests</div>
+              <div class="hv-badge-sub">Career Total</div>
+            </div>
+          </div>
+          <div class="hv-badge hv-b2">
+            <div class="hv-badge-dot" style="background:#4fc3f7;box-shadow:0 0 6px #4fc3f7;"></div>
+            <div>
+              <div class="hv-badge-text">Fully Insured</div>
+              <div class="hv-badge-sub">Public &amp; Liability</div>
+            </div>
+          </div>
+          <div class="hv-badge hv-b3">
+            <div class="hv-badge-dot" style="background:#f9ca24;box-shadow:0 0 6px #f9ca24;"></div>
+            <div>
+              <div class="hv-badge-text">⭐ 5 Star Rated</div>
+              <div class="hv-badge-sub">Google Reviews</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAGLINE BAR -->
+  <div class="tagline-bar">
+    <span>Gas</span>
+    <span>·</span>
+    <span>Water</span>
+    <span>·</span>
+    <span>Air</span>
+    <span>·</span>
+    <span>Electrical</span>
+  </div>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-count"><span class="counter" data-target="10000">0</span><span class="suffix">+</span></div>
+        <div class="stat-desc">Gas Tests Completed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-count"><span class="counter" data-target="0">0</span></div>
+        <div class="stat-desc">Subcontractors — Always Lee</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-count"><span class="counter" data-target="100">0</span><span class="suffix">%</span></div>
+        <div class="stat-desc">Gas Safe Compliant</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-count"><span class="counter" data-target="24">0</span><span class="suffix">/7</span></div>
+        <div class="stat-desc">Emergency Available</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLUEPRINT -->
+  <section id="blueprint">
+    <div class="blueprint-inner">
+      <div class="blueprint-text">
+        <div class="section-label">Engineering</div>
+        <h2>Every System.<br/>Diagnosed Right.</h2>
+        <p class="section-intro">Whether it's a boiler, heating circuit, plumbing fault or air system — every job gets a proper diagnosis before any work starts. No guessing. No unnecessary parts. Just the right fix, done properly.</p>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <svg id="blueprint-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- Background rings -->
+          <circle cx="250" cy="250" r="220" fill="none" stroke="rgba(106,176,76,0.06)" stroke-width="1"/>
+          <circle cx="250" cy="250" r="185" fill="none" stroke="rgba(79,195,247,0.06)" stroke-width="1"/>
+          <circle cx="250" cy="250" r="150" fill="none" stroke="rgba(106,176,76,0.06)" stroke-width="1"/>
+
+          <!-- Self-drawing pipe schematic -->
+          <path class="pipe-path-animated" id="heating-path"
+            fill="none" stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"
+            d="M 72 250 L 72 90 L 250 90 L 250 75
+               M 250 75 L 428 75 L 428 175
+               M 428 175 L 428 325 L 250 325 L 250 425 L 72 425 L 72 250"/>
+
+          <!-- Boiler unit -->
+          <rect x="46" y="208" width="52" height="84" rx="5" fill="rgba(8,15,30,0.9)" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+          <line x1="57" y1="226" x2="87" y2="226" stroke="#4fc3f7" stroke-width="1" opacity="0.45"/>
+          <line x1="57" y1="240" x2="87" y2="240" stroke="#4fc3f7" stroke-width="1" opacity="0.45"/>
+          <line x1="57" y1="254" x2="87" y2="254" stroke="#4fc3f7" stroke-width="1" opacity="0.45"/>
+          <line x1="57" y1="268" x2="87" y2="268" stroke="#4fc3f7" stroke-width="1" opacity="0.45"/>
+          <text class="bp-label" x="22" y="204">Boiler</text>
+
+          <!-- Top radiator -->
+          <rect x="213" y="57" width="74" height="18" rx="3" fill="rgba(8,15,30,0.9)" stroke="#6ab04c" stroke-width="1.5" opacity="0.7"/>
+          <line x1="228" y1="57" x2="228" y2="75" stroke="#6ab04c" stroke-width="1.2" opacity="0.5"/>
+          <line x1="244" y1="57" x2="244" y2="75" stroke="#6ab04c" stroke-width="1.2" opacity="0.5"/>
+          <line x1="260" y1="57" x2="260" y2="75" stroke="#6ab04c" stroke-width="1.2" opacity="0.5"/>
+          <line x1="276" y1="57" x2="276" y2="75" stroke="#6ab04c" stroke-width="1.2" opacity="0.5"/>
+          <text class="bp-label" x="218" y="46">Radiator</text>
+
+          <!-- Right radiator -->
+          <rect x="411" y="188" width="18" height="124" rx="3" fill="rgba(8,15,30,0.9)" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+          <line x1="411" y1="206" x2="429" y2="206" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+          <line x1="411" y1="222" x2="429" y2="222" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+          <line x1="411" y1="238" x2="429" y2="238" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+          <line x1="411" y1="254" x2="429" y2="254" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+          <line x1="411" y1="270" x2="429" y2="270" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+          <line x1="411" y1="286" x2="429" y2="286" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+          <line x1="411" y1="302" x2="429" y2="302" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+          <text class="bp-label" x="435" y="250">Radiator</text>
+
+          <!-- Flow arrows -->
+          <polygon points="250,106 244,116 256,116" fill="#4fc3f7" opacity="0.55"/>
+          <polygon points="398,75 390,69 390,81" fill="#4fc3f7" opacity="0.55"/>
+          <polygon points="250,394 256,384 244,384" fill="#4fc3f7" opacity="0.55"/>
+          <polygon points="100,425 108,419 108,431" fill="#4fc3f7" opacity="0.55"/>
+
+          <!-- Flow / Return labels -->
+          <text class="bp-label" x="80" y="87">Flow</text>
+          <text class="bp-label" x="80" y="440">Return</text>
+
+          <!-- ── SPINNING GEAR ── -->
+          <g id="spin-element">
+            <!-- 12 teeth (drawn behind gear body so only tips show) -->
+            <rect transform="rotate(0,250,250)"   x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(30,250,250)"  x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(60,250,250)"  x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(90,250,250)"  x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(120,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(150,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(180,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(210,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(240,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(270,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(300,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <rect transform="rotate(330,250,250)" x="243" y="150" width="14" height="38" fill="#6ab04c" rx="3"/>
+            <!-- Gear body (covers inner part of teeth) -->
+            <circle cx="250" cy="250" r="74" fill="#080f1e" stroke="#6ab04c" stroke-width="2.5"/>
+            <!-- Dashed inner ring -->
+            <circle cx="250" cy="250" r="54" fill="none" stroke="rgba(106,176,76,0.25)" stroke-width="1.2" stroke-dasharray="5 4"/>
+            <!-- Spokes -->
+            <line x1="250" y1="196" x2="250" y2="304" stroke="rgba(106,176,76,0.2)" stroke-width="2"/>
+            <line x1="196" y1="250" x2="304" y2="250" stroke="rgba(106,176,76,0.2)" stroke-width="2"/>
+            <line x1="212" y1="212" x2="288" y2="288" stroke="rgba(106,176,76,0.12)" stroke-width="2"/>
+            <line x1="288" y1="212" x2="212" y2="288" stroke="rgba(106,176,76,0.12)" stroke-width="2"/>
+            <!-- Hub -->
+            <circle cx="250" cy="250" r="26" fill="#080f1e" stroke="#4fc3f7" stroke-width="2"/>
+            <circle cx="250" cy="250" r="10" fill="#4fc3f7" opacity="0.2"/>
+            <circle cx="250" cy="250" r="4" fill="#4fc3f7" opacity="0.7"/>
+          </g>
+
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">What We Do</div>
+    <h2>Our Services</h2>
+    <p class="section-intro">From emergency call-outs to annual servicing, all work is carried out by a single qualified engineer — no subcontractors, no surprises.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔥</div>
+        <h3>Boiler Repairs & Servicing</h3>
+        <p>Fault finding, diagnosis and repair on all major boiler brands. Annual servicing to manufacturer standards using genuine parts.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Gas Safety Certificates</h3>
+        <p>CP12 landlord gas safety certificates and compliance documentation. Insurance-ready reports issued same day.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌡️</div>
+        <h3>Heating System Diagnostics</h3>
+        <p>Full system health checks, controls diagnostics, pressure and flow testing. Problems identified and explained clearly.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Plumbing Repairs</h3>
+        <p>Leaks, pipe repairs, radiators, valves, and general plumbing maintenance. Domestic work only, carried out properly.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">❄️</div>
+        <h3>Air Conditioning</h3>
+        <p>Installation, commissioning and servicing of domestic and light commercial air conditioning systems.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Emergency Call-Outs</h3>
+        <p>Breakdowns and urgent repairs responded to as quickly as possible. No-heat situations prioritised, especially in winter.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEISURE PARKS -->
+  <section id="leisure">
+    <div class="leisure-inner">
+      <div>
+        <div class="section-label">Specialist Sector</div>
+        <!-- Hand-drawn tent + campfire icon -->
+        <svg width="96" height="80" viewBox="0 0 96 80" xmlns="http://www.w3.org/2000/svg" style="display:block;margin-bottom:14px;">
+          <defs>
+            <radialGradient id="lg1" cx="50%" cy="80%" r="50%">
+              <stop offset="0%" stop-color="#f9ca24" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#e55039" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- Ground -->
+          <ellipse cx="48" cy="72" rx="44" ry="5" fill="#163320" opacity="0.6"/>
+          <!-- Tent body left panel -->
+          <polygon points="48,8 10,68 48,68" fill="#1e5c2e" stroke="#6ab04c" stroke-width="1.4" stroke-linejoin="round"/>
+          <!-- Tent body right panel -->
+          <polygon points="48,8 86,68 48,68" fill="#256b37" stroke="#6ab04c" stroke-width="1.4" stroke-linejoin="round"/>
+          <!-- Ridge line highlight -->
+          <line x1="48" y1="8" x2="48" y2="68" stroke="#6ab04c" stroke-width="1" opacity="0.35"/>
+          <!-- Door opening -->
+          <polygon points="48,40 36,68 60,68" fill="#0c2818"/>
+          <!-- Door arch curve -->
+          <path d="M36,68 Q48,48 60,68" fill="none" stroke="#6ab04c" stroke-width="1.2" opacity="0.5"/>
+          <!-- Tent pegs -->
+          <line x1="10" y1="68" x2="4" y2="74" stroke="#6ab04c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="86" y1="68" x2="92" y2="74" stroke="#6ab04c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <!-- Guy ropes -->
+          <line x1="48" y1="8" x2="4" y2="28" stroke="#6ab04c" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.35"/>
+          <line x1="48" y1="8" x2="92" y2="28" stroke="#6ab04c" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.35"/>
+          <!-- Window -->
+          <polygon points="65,38 75,54 55,54" fill="none" stroke="#6ab04c" stroke-width="1" opacity="0.45"/>
+          <!-- Stars -->
+          <circle cx="18" cy="14" r="1.2" fill="#6ab04c" opacity="0.55"/>
+          <circle cx="76" cy="10" r="1" fill="#6ab04c" opacity="0.45"/>
+          <circle cx="88" cy="22" r="0.8" fill="#6ab04c" opacity="0.35"/>
+          <circle cx="6" cy="20" r="1" fill="#6ab04c" opacity="0.4"/>
+          <!-- Moon -->
+          <path d="M26,18 Q20,22 24,28 Q16,22 22,14 Q28,12 26,18Z" fill="#6ab04c" opacity="0.5"/>
+        </svg>
+        <div class="leisure-badge">Holiday &amp; Leisure Park Specialists</div>
+        <h2>Keeping Holiday Parks Running</h2>
+        <p class="section-intro">From single lodges to large caravan and holiday parks, we understand the unique compliance, access, and documentation requirements that park operators need. Guests can't be left without heating.</p>
+        <div class="leisure-grid">
+          <div class="leisure-item">
+            <div class="li-icon">📋</div>
+            <h4>Bulk CP12 Certificates</h4>
+            <p>Annual gas safety inspections across all units. Documentation ready for insurers and local authority.</p>
+          </div>
+          <div class="leisure-item">
+            <div class="li-icon">🔥</div>
+            <h4>Lodge Boiler Servicing</h4>
+            <p>Annual and reactive servicing on all lodge and caravan heating systems. LPG and mains gas.</p>
+          </div>
+          <div class="leisure-item">
+            <div class="li-icon">⚡</div>
+            <h4>Emergency Response</h4>
+            <p>Park guests can't wait days. Rapid response to heating and gas failures in occupied units.</p>
+          </div>
+          <div class="leisure-item">
+            <div class="li-icon">🤝</div>
+            <h4>Annual Contracts</h4>
+            <p>Scheduled maintenance programmes for park operators. Predictable costs, priority response.</p>
+          </div>
+          <div class="leisure-item">
+            <div class="li-icon">📁</div>
+            <h4>Compliance Documentation</h4>
+            <p>Properly worded compliance reports. Insurance-ready, council-ready, operator-ready.</p>
+          </div>
+          <div class="leisure-item">
+            <div class="li-icon">🔧</div>
+            <h4>Remedial Works</h4>
+            <p>Follow-on repairs after safety inspections. All work documented and completed to Gas Safe standards.</p>
+          </div>
+        </div>
+        <!-- Park manager CTA -->
+        <div style="margin-top:28px; background:rgba(106,176,76,0.1); border:1px solid rgba(106,176,76,0.3); border-radius:12px; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+          <div>
+            <p style="color:#fff; font-weight:700; font-size:15px; margin-bottom:4px;">Park manager or site operator?</p>
+            <p style="color:rgba(255,255,255,0.6); font-size:13px;">Get in touch to discuss annual contracts, bulk CP12 programmes or ongoing maintenance agreements.</p>
+          </div>
+          <a href="mailto:lee@vortexcarbon.co.uk?subject=Park%20Operator%20Enquiry" style="background:#6ab04c; color:#fff; padding:12px 22px; border-radius:8px; font-weight:700; font-size:14px; text-decoration:none; white-space:nowrap; flex-shrink:0;">Send an Enquiry</a>
+        </div>
+      </div>
+      <div class="lodge-svg-wrap" style="display:flex;justify-content:center;">
+        <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stars -->
+          <circle cx="50" cy="38" r="1.5" fill="white" opacity="0.35"/>
+          <circle cx="130" cy="22" r="1" fill="white" opacity="0.25"/>
+          <circle cx="350" cy="48" r="1.5" fill="white" opacity="0.35"/>
+          <circle cx="280" cy="18" r="1" fill="white" opacity="0.25"/>
+          <circle cx="170" cy="32" r="1.2" fill="white" opacity="0.2"/>
+          <circle cx="320" cy="28" r="0.8" fill="white" opacity="0.3"/>
+          <circle cx="80" cy="55" r="1" fill="white" opacity="0.2"/>
+
+          <!-- Left tree -->
+          <rect x="54" y="220" width="8" height="40" fill="#1a3a28"/>
+          <polygon points="58,210 36,175 80,175" fill="#2d6640"/>
+          <polygon points="58,188 34,148 82,148" fill="#3d7a52"/>
+          <polygon points="58,168 37,125 79,125" fill="#4d9a62"/>
+
+          <!-- Right tree -->
+          <rect x="336" y="218" width="8" height="40" fill="#1a3a28"/>
+          <polygon points="340,208 318,173 362,173" fill="#2d6640"/>
+          <polygon points="340,186 316,146 364,146" fill="#3d7a52"/>
+          <polygon points="340,164 318,122 362,122" fill="#4d9a62"/>
+
+          <!-- Background lodge (smaller) -->
+          <polygon points="300,155 258,128 342,128" fill="#163320"/>
+          <rect x="263" y="128" width="74" height="52" fill="#1e4a2a"/>
+          <rect x="278" y="143" width="18" height="14" fill="#6ab04c" opacity="0.18" rx="2"/>
+          <rect x="306" y="143" width="18" height="14" fill="#6ab04c" opacity="0.18" rx="2"/>
+          <rect x="289" y="152" width="16" height="28" fill="#163320" rx="1"/>
+
+          <!-- Main lodge chimney -->
+          <rect x="242" y="78" width="18" height="64" fill="#163320"/>
+          <rect x="238" y="75" width="26" height="8" fill="#0d2218" rx="2"/>
+          <!-- Smoke -->
+          <circle cx="251" cy="66" r="7" fill="rgba(200,220,210,0.07)"/>
+          <circle cx="256" cy="55" r="5" fill="rgba(200,220,210,0.05)"/>
+
+          <!-- Main lodge roof -->
+          <polygon points="200,58 78,142 322,142" fill="#163320"/>
+          <polygon points="200,58 78,142 200,142" fill="#1a3a28"/>
+          <!-- Ridge cap -->
+          <line x1="200" y1="58" x2="322" y2="142" stroke="#0d2218" stroke-width="2"/>
+
+          <!-- Lodge walls -->
+          <rect x="83" y="142" width="234" height="115" fill="#235535"/>
+
+          <!-- Deck/porch -->
+          <rect x="83" y="222" width="234" height="10" fill="#1a3a28"/>
+          <rect x="88" y="203" width="3" height="29" fill="#163320"/>
+          <rect x="108" y="203" width="3" height="29" fill="#163320"/>
+          <rect x="289" y="203" width="3" height="29" fill="#163320"/>
+          <rect x="309" y="203" width="3" height="29" fill="#163320"/>
+          <line x1="83" y1="208" x2="317" y2="208" stroke="#163320" stroke-width="2"/>
+
+          <!-- Windows -->
+          <rect x="98" y="158" width="52" height="38" fill="#6ab04c" opacity="0.12" rx="3"/>
+          <rect x="174" y="158" width="52" height="38" fill="#6ab04c" opacity="0.12" rx="3"/>
+          <rect x="250" y="158" width="52" height="38" fill="#6ab04c" opacity="0.12" rx="3"/>
+          <!-- Window frames -->
+          <rect x="98" y="158" width="52" height="38" fill="none" stroke="#6ab04c" stroke-width="1.5" opacity="0.4" rx="3"/>
+          <rect x="174" y="158" width="52" height="38" fill="none" stroke="#6ab04c" stroke-width="1.5" opacity="0.4" rx="3"/>
+          <rect x="250" y="158" width="52" height="38" fill="none" stroke="#6ab04c" stroke-width="1.5" opacity="0.4" rx="3"/>
+          <!-- Window panes -->
+          <line x1="124" y1="158" x2="124" y2="196" stroke="#6ab04c" stroke-width="1" opacity="0.3"/>
+          <line x1="98" y1="177" x2="150" y2="177" stroke="#6ab04c" stroke-width="1" opacity="0.3"/>
+          <line x1="200" y1="158" x2="200" y2="196" stroke="#6ab04c" stroke-width="1" opacity="0.3"/>
+          <line x1="174" y1="177" x2="226" y2="177" stroke="#6ab04c" stroke-width="1" opacity="0.3"/>
+          <line x1="276" y1="158" x2="276" y2="196" stroke="#6ab04c" stroke-width="1" opacity="0.3"/>
+          <line x1="250" y1="177" x2="302" y2="177" stroke="#6ab04c" stroke-width="1" opacity="0.3"/>
+
+          <!-- Door -->
+          <rect x="182" y="196" width="36" height="46" fill="#163320" rx="2"/>
+          <circle cx="213" cy="222" r="2.5" fill="#6ab04c" opacity="0.55"/>
+
+          <!-- Path -->
+          <ellipse cx="200" cy="270" rx="22" ry="6" fill="#1a3a28" opacity="0.6"/>
+          <rect x="195" y="257" width="10" height="18" fill="#1a3a28" opacity="0.5"/>
+
+          <!-- Ground -->
+          <rect x="0" y="257" width="400" height="63" fill="#0c1f14"/>
+          <ellipse cx="200" cy="257" rx="200" ry="6" fill="#163320"/>
+
+          <!-- Gas Safe badge -->
+          <circle cx="362" cy="272" r="26" fill="rgba(106,176,76,0.12)" stroke="#6ab04c" stroke-width="1.5" opacity="0.7"/>
+          <text x="362" y="266" text-anchor="middle" fill="#6ab04c" font-size="8" font-weight="bold" font-family="Arial" opacity="0.9">GAS</text>
+          <text x="362" y="276" text-anchor="middle" fill="#6ab04c" font-size="8" font-weight="bold" font-family="Arial" opacity="0.9">SAFE</text>
+          <text x="362" y="286" text-anchor="middle" fill="#6ab04c" font-size="9" font-family="Arial" opacity="0.7">✓</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="section-label">Why Choose Us</div>
+    <h2>The Vortex Carbon Difference</h2>
+    <p class="section-intro">We do things differently. You deal directly with the engineer — no call centres, no middlemen, no nonsense.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">👷</div>
+        <h3>One Engineer, One Standard</h3>
+        <p>You always deal with Lee directly. The person you call is the person who turns up.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">💬</div>
+        <h3>Plain English</h3>
+        <p>Problems are explained clearly. If something doesn't need doing, it won't be pushed.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">✅</div>
+        <h3>Fully Compliant</h3>
+        <p>All work documented, insured and aligned with Gas Safe regulations. No shortcuts.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📍</div>
+        <h3>Locally Based</h3>
+        <p>Based in North Norfolk. Fast response times, local knowledge, repeat customers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <div class="section-label">Credentials</div>
+    <h2>Qualified, Registered & Insured</h2>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="icon">🛡️</div>
+        <h3>Gas Safe Registered</h3>
+        <p>Registration No. 973245</p>
+      </div>
+      <div class="cred-card">
+        <div class="icon">📄</div>
+        <h3>Fully Insured</h3>
+        <p>Public liability & professional indemnity</p>
+      </div>
+      <div class="cred-card">
+        <div class="icon">🏢</div>
+        <h3>Ltd Company</h3>
+        <p>UK registered limited company</p>
+      </div>
+      <div class="cred-card">
+        <div class="icon">🔬</div>
+        <h3>Domestic Qualified</h3>
+        <p>Natural gas & LPG appliances</p>
+      </div>
+      <div class="cred-card">
+        <div class="icon">📋</div>
+        <h3>CP12 Certified</h3>
+        <p>Landlord gas safety certificates</p>
+      </div>
+      <div class="cred-card">
+        <div class="icon">❄️</div>
+        <h3>Refcom Registered</h3>
+        <p>F-Gas certified for refrigerant handling & air conditioning</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section id="coverage">
+    <div class="section-label">Areas Covered</div>
+    <h2>Serving North Norfolk & Beyond</h2>
+    <p class="section-intro">Based in the Hunstanton area, covering a wide range of towns, villages and rural properties across North Norfolk.</p>
+    <div class="coverage-areas">
+      <span class="area-tag">Hunstanton</span>
+      <span class="area-tag">Heacham</span>
+      <span class="area-tag">King's Lynn</span>
+      <span class="area-tag">Fakenham</span>
+      <span class="area-tag">Wells-next-the-Sea</span>
+      <span class="area-tag">Burnham Market</span>
+      <span class="area-tag">Holt</span>
+      <span class="area-tag">Sheringham</span>
+      <span class="area-tag">North Walsham</span>
+      <span class="area-tag">Rural Properties</span>
+      <span class="area-tag">Surrounding Villages</span>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="section-label" style="text-align:center;">What People Say</div>
+    <h2 style="text-align:center; margin-bottom:8px;">Rated 5 Stars on Google</h2>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Came out same day, diagnosed the fault straight away and had it fixed within the hour. No fuss, no sales pitch — just proper work. Would highly recommend."</p>
+        <div class="review-author">Sarah M.</div>
+        <div class="review-source">Google Review · Hunstanton</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Brilliant service. Lee explained everything clearly, turned up on time and the price was exactly what he quoted. Refreshing to deal with someone so straightforward."</p>
+        <div class="review-author">James T.</div>
+        <div class="review-source">Google Review · King's Lynn</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Used Vortex Carbon for our annual CP12 certificates across the site. Professional, reliable and the documentation was ready the same day. Exactly what we needed."</p>
+        <div class="review-author">Park Manager</div>
+        <div class="review-source">Google Review · North Norfolk</div>
+      </div>
+    </div>
+    <a href="https://www.google.com/search?q=Vortex+Carbon+Ltd+reviews" target="_blank" class="google-btn">
+      <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      See All Our Google Reviews
+    </a>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Get In Touch</div>
+    <h2>Ready to Help</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Contact Details</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>Phone</strong>
+            <a href="tel:07568308119">07568 308 119</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <strong>Email</strong>
+            <a href="mailto:lee@vortexcarbon.co.uk">lee@vortexcarbon.co.uk</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🌐</div>
+          <div class="contact-item-text">
+            <strong>Website</strong>
+            <a href="https://www.vortexcarbon.co.uk">www.vortexcarbon.co.uk</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-text">
+            <strong>Hours</strong>
+            Monday – Friday. Emergency call-outs subject to availability.
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <h3>Need an Engineer?</h3>
+        <p>Call or message now. Fast response, honest advice, proper work.</p>
+        <a href="tel:07568308119" class="btn-primary">📞 Call 07568 308 119</a>
+        <a href="https://wa.me/447568308119" class="whatsapp-btn">💬 Message on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="https://img1.wsimg.com/isteam/ip/5e726e31-6875-4e52-8355-b96ff701967c/48D1B516-918C-4A81-AE74-832ACCCCF290.png" alt="Vortex Carbon Ltd" />
+    <p>© 2026 Vortex Carbon Ltd · Gas Safe Reg: 973245 · <a href="mailto:lee@vortexcarbon.co.uk">lee@vortexcarbon.co.uk</a></p>
+    <p style="margin-top:10px;">
+      <a href="https://www.facebook.com/profile.php?id=61589798134793" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#fff;opacity:0.7;font-size:13px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.5h-2.79V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+        Follow us on Facebook
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, entry.target.dataset.delay || 0);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Apply staggered delays to cards
+    document.querySelectorAll('.service-card').forEach((el, i) => {
+      el.dataset.delay = i * 80;
+      el.style.transition = `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s`;
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.why-item').forEach((el, i) => {
+      el.dataset.delay = i * 100;
+      el.style.transition = `all 0.5s ease ${i * 0.1}s`;
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.cred-card').forEach((el, i) => {
+      el.dataset.delay = i * 80;
+      el.style.transition = `all 0.5s ease ${i * 0.08}s`;
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.area-tag').forEach((el, i) => {
+      el.dataset.delay = i * 60;
+      el.style.transition = `all 0.4s ease ${i * 0.06}s`;
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.contact-item').forEach((el, i) => {
+      el.dataset.delay = i * 100;
+      el.style.transition = `all 0.4s ease ${i * 0.1}s`;
+      observer.observe(el);
+    });
+
+    // Stat counters
+    const counters = document.querySelectorAll('.counter');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const duration = 1800;
+        const step = Math.max(1, Math.ceil(target / (duration / 16)));
+        let current = 0;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = current;
+          if (current >= target) clearInterval(timer);
+        }, 16);
+        statsObserver.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(c => statsObserver.observe(c));
+
+    // Review cards stagger
+    document.querySelectorAll('.review-card').forEach((el, i) => {
+      el.style.transition = `all 0.5s ease ${i * 0.12}s`;
+      observer.observe(el);
+    });
+
+    // Leisure items stagger
+    document.querySelectorAll('.leisure-item').forEach((el, i) => {
+      el.style.transition = `all 0.45s ease ${i * 0.08}s`;
+      observer.observe(el);
+    });
+
+    // Blueprint scroll-spin & pipe drawing
+    const spinEl = document.getElementById('spin-element');
+    const heatingPath = document.getElementById('heating-path');
+    const blueprintSection = document.getElementById('blueprint');
+
+    if (spinEl && blueprintSection) {
+      let lastScroll = -1;
+      function updateBlueprint() {
+        const scrollY = window.scrollY;
+        if (scrollY === lastScroll) return;
+        lastScroll = scrollY;
+
+        const rect = blueprintSection.getBoundingClientRect();
+        const winH = window.innerHeight;
+        const secH = blueprintSection.offsetHeight;
+        const progress = Math.max(0, Math.min(1, (winH - rect.top) / (winH + secH)));
+
+        // Spin: 2 full rotations as you scroll through the section
+        const deg = progress * 720;
+        spinEl.setAttribute('transform', `rotate(${deg}, 250, 250)`);
+
+        // Draw pipes
+        if (heatingPath) {
+          heatingPath.style.strokeDashoffset = 1400 - progress * 1400;
+        }
+
+        // Fade in labels after 20% progress
+        if (progress > 0.2) {
+          document.querySelectorAll('.bp-label').forEach(el => el.classList.add('visible'));
+        }
+      }
+
+      window.addEventListener('scroll', () => requestAnimationFrame(updateBlueprint), { passive: true });
+      updateBlueprint();
+    }
+
+    // Smooth nav background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.25)';
+      } else {
+        nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+      }
+    });
+  </script>
+
+</body>
+</html>
