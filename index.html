@@ -895,6 +895,22 @@
           Coverage
         </a></li>
 
+        <!-- Park Booking -->
+        <li><a href="#park-booking" style="display:inline-flex;align-items:center;gap:7px;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="17" rx="2" fill="#27ae60"/><rect x="3" y="4" width="18" height="5" rx="2" fill="#1e8449"/><line x1="8" y1="2" x2="8" y2="6" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="2" x2="16" y2="6" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="13" x2="11" y2="13" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="16" x2="14" y2="16" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Park Enquiry
+        </a></li>
+
+        <!-- Home Care -->
+        <li><a href="#home-care" style="display:inline-flex;align-items:center;gap:7px;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+            <path d="M3 11L12 3l9 8v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" fill="#e8a838"/><path d="M9 21v-7h6v7" fill="#c7832a"/><path d="M12 7a2 2 0 110 4 2 2 0 010-4z" fill="#fff" opacity="0.6"/>
+          </svg>
+          Home Care
+        </a></li>
+
         <!-- Holiday Park Specialist: lodge/cabin -->
         <li><a href="#leisure" style="display:inline-flex;align-items:center;gap:7px;">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
@@ -1406,6 +1422,373 @@
     </div>
   </section>
 
+  <!-- BOILER SERVICE CALCULATOR -->
+  <section id="service-check" style="background: var(--navy); padding: 80px 5%;">
+    <div style="max-width: 680px; margin: 0 auto; text-align: center;">
+      <div class="section-label" style="color: #6ab04c;">Quick Check</div>
+      <h2 style="color: #fff; margin-bottom: 10px;">Is Your Boiler Overdue a Service?</h2>
+      <p style="color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.7; margin-bottom: 40px;">An annual service keeps your boiler safe, efficient and under warranty. Drag the slider to find out where you stand.</p>
+
+      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 36px 40px;">
+        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 10px;">
+          <span style="color: rgba(255,255,255,0.5); font-size: 13px; white-space: nowrap;">Last serviced</span>
+          <input type="range" id="boiler-months" min="0" max="36" value="8" step="1"
+            style="flex: 1; -webkit-appearance: none; height: 6px; border-radius: 3px; background: linear-gradient(to right, #6ab04c 0%, #6ab04c 22%, rgba(255,255,255,0.15) 22%); outline: none; cursor: pointer;"
+            oninput="updateBoilerCalc(this.value)"/>
+          <span id="boiler-months-label" style="color: #fff; font-size: 15px; font-weight: 700; min-width: 80px; text-align: right;">8 months ago</span>
+        </div>
+
+        <div id="boiler-result" style="margin-top: 28px; border-radius: 12px; padding: 20px 24px; transition: background 0.3s;">
+          <div id="boiler-verdict" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 6px;"></div>
+          <div id="boiler-detail" style="font-size: 14px; opacity: 0.85; margin-bottom: 16px;"></div>
+          <a href="tel:07568308119" id="boiler-cta" style="display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; background: #6ab04c; color: #fff;"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function updateBoilerCalc(v) {
+      v = parseInt(v);
+      const label = document.getElementById('boiler-months-label');
+      const result = document.getElementById('boiler-result');
+      const verdict = document.getElementById('boiler-verdict');
+      const detail = document.getElementById('boiler-detail');
+      const cta = document.getElementById('boiler-cta');
+      const slider = document.getElementById('boiler-months');
+
+      label.textContent = v === 0 ? 'Just serviced' : v === 1 ? '1 month ago' : v + ' months ago';
+
+      const pct = (v / 36) * 100;
+      const green = '#6ab04c';
+      const amber = '#f9ca24';
+      const red = '#e55039';
+      let col = v < 11 ? green : v < 14 ? amber : red;
+      slider.style.background = `linear-gradient(to right, ${col} 0%, ${col} ${pct}%, rgba(255,255,255,0.15) ${pct}%)`;
+
+      if (v < 11) {
+        result.style.background = 'rgba(106,176,76,0.12)';
+        result.style.border = '1px solid rgba(106,176,76,0.3)';
+        verdict.style.color = '#6ab04c';
+        verdict.textContent = "You're all good.";
+        detail.style.color = 'rgba(255,255,255,0.7)';
+        detail.textContent = "Your boiler was serviced recently. Set a reminder for the 12 month mark to stay on top of it.";
+        cta.textContent = "Book next year's service now";
+        cta.style.background = '#6ab04c';
+      } else if (v < 14) {
+        result.style.background = 'rgba(249,202,36,0.1)';
+        result.style.border = '1px solid rgba(249,202,36,0.35)';
+        verdict.style.color = '#f9ca24';
+        verdict.textContent = "Coming up to 12 months — time to book.";
+        detail.style.color = 'rgba(255,255,255,0.7)';
+        detail.textContent = "Annual servicing keeps your warranty valid and catches faults before they become expensive. Don't leave it too long.";
+        cta.textContent = "Book a service — 07568 308 119";
+        cta.style.background = '#f9ca24';
+        cta.style.color = '#1a1a1a';
+      } else {
+        result.style.background = 'rgba(229,80,57,0.1)';
+        result.style.border = '1px solid rgba(229,80,57,0.35)';
+        verdict.style.color = '#e55039';
+        verdict.textContent = "Overdue — don't leave it any longer.";
+        detail.style.color = 'rgba(255,255,255,0.7)';
+        detail.textContent = "An unserviced boiler can void your manufacturer warranty, reduce efficiency and miss serious safety issues. Book now.";
+        cta.textContent = "Call Vortex Carbon now — 07568 308 119";
+        cta.style.background = '#e55039';
+        cta.style.color = '#fff';
+      }
+    }
+    updateBoilerCalc(8);
+  </script>
+
+  <!-- PARK BOOKING FORM -->
+  <section id="park-booking" style="background: #0c1f14; padding: 90px 5%;">
+    <div style="max-width: 620px; margin: 0 auto; text-align: center;">
+      <div class="section-label" style="color: #6ab04c;">Holiday &amp; Leisure Parks</div>
+      <h2 style="color: #fff; margin-bottom: 10px;">Park Operator Enquiry</h2>
+      <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.7; margin-bottom: 40px;">Fill this in on your phone and Vortex Carbon will come back to you with a quote. Takes about a minute.</p>
+
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(106,176,76,0.2); border-radius: 18px; padding: 36px; text-align: left;">
+
+        <div style="height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 32px; overflow: hidden;">
+          <div id="pk-prog" style="height: 100%; border-radius: 2px; background: #6ab04c; width: 16%; transition: width 0.4s ease;"></div>
+        </div>
+
+        <!-- Step 1: What do you need -->
+        <div class="pk-step" id="pk1">
+          <div style="font-size: 30px; margin-bottom: 10px;">🏕️</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6ab04c; margin-bottom: 8px;">Step 1 of 6</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px;">What do you need?</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="pk-opt" onclick="pkPick(this,'need','Annual CP12 safety inspections','pk1','pn1')">📋 Annual CP12 gas safety inspections</div>
+            <div class="pk-opt" onclick="pkPick(this,'need','Boiler repair or breakdown','pk1','pn1')">🔥 Boiler repair or breakdown</div>
+            <div class="pk-opt" onclick="pkPick(this,'need','Boiler or appliance service','pk1','pn1')">🔧 Boiler or appliance service</div>
+            <div class="pk-opt" onclick="pkPick(this,'need','Thermostat or controls upgrade','pk1','pn1')">🌡️ Thermostat or controls upgrade</div>
+            <div class="pk-opt" onclick="pkPick(this,'need','New boiler installation','pk1','pn1')">⚙️ New boiler installation</div>
+            <div class="pk-opt" onclick="pkPick(this,'need','General maintenance contract','pk1','pn1')">📅 Ongoing maintenance contract</div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+            <button class="pk-btn-next" id="pn1" onclick="pkNext('pk1','pk2',32)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Gas type -->
+        <div class="pk-step" id="pk2" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">⛽</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6ab04c; margin-bottom: 8px;">Step 2 of 6</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px;">What type of gas supply?</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="pk-opt" onclick="pkPick(this,'gas','LPG — bulk tank on site','pk2','pn2')">🟠 LPG — bulk tank on site</div>
+            <div class="pk-opt" onclick="pkPick(this,'gas','LPG — individual bottles per unit','pk2','pn2')">🔶 LPG — individual bottles per unit</div>
+            <div class="pk-opt" onclick="pkPick(this,'gas','Mains natural gas','pk2','pn2')">🔵 Mains natural gas</div>
+            <div class="pk-opt" onclick="pkPick(this,'gas','Mix of gas types across site','pk2','pn2')">🔀 Mix of gas types across site</div>
+            <div class="pk-opt" onclick="pkPick(this,'gas','Not sure','pk2','pn2')">🤷 Not sure</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+            <button class="pk-btn-back" onclick="pkBack('pk2','pk1',16)">← Back</button>
+            <button class="pk-btn-next" id="pn2" onclick="pkNext('pk2','pk3',48)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: How many units -->
+        <div class="pk-step" id="pk3" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">🏘️</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6ab04c; margin-bottom: 8px;">Step 3 of 6</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px;">How many units on site?</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="pk-opt" onclick="pkPick(this,'units','1–5 units','pk3','pn3')">1–5 units</div>
+            <div class="pk-opt" onclick="pkPick(this,'units','6–20 units','pk3','pn3')">6–20 units</div>
+            <div class="pk-opt" onclick="pkPick(this,'units','21–50 units','pk3','pn3')">21–50 units</div>
+            <div class="pk-opt" onclick="pkPick(this,'units','50+ units','pk3','pn3')">50+ units</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+            <button class="pk-btn-back" onclick="pkBack('pk3','pk2',32)">← Back</button>
+            <button class="pk-btn-next" id="pn3" onclick="pkNext('pk3','pk4',64)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Last CP12 -->
+        <div class="pk-step" id="pk4" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">📋</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6ab04c; margin-bottom: 8px;">Step 4 of 6</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px;">When were the units last CP12 inspected?</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="pk-opt" onclick="pkPick(this,'cp12','Within the last 12 months','pk4','pn4')">✅ Within the last 12 months</div>
+            <div class="pk-opt" onclick="pkPick(this,'cp12','Over 12 months ago','pk4','pn4')">⚠️ Over 12 months ago — overdue</div>
+            <div class="pk-opt" onclick="pkPick(this,'cp12','Never or not sure','pk4','pn4')">❓ Never inspected or not sure</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+            <button class="pk-btn-back" onclick="pkBack('pk4','pk3',48)">← Back</button>
+            <button class="pk-btn-next" id="pn4" onclick="pkNext('pk4','pk5',80)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Contact -->
+        <div class="pk-step" id="pk5" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">📬</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6ab04c; margin-bottom: 8px;">Step 5 of 6</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px;">Your details</div>
+          <div style="margin-bottom: 14px;"><label style="font-size: 12px; color: rgba(255,255,255,0.5); display:block; margin-bottom:5px;">Your name &amp; role</label><input type="text" id="pk-name" placeholder="e.g. Dave — Park Manager" oninput="pkCheckContact()" style="width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:14px; color:#fff; font-size:15px; outline:none;"/></div>
+          <div style="margin-bottom: 14px;"><label style="font-size: 12px; color: rgba(255,255,255,0.5); display:block; margin-bottom:5px;">Phone number</label><input type="tel" id="pk-phone" placeholder="e.g. 07700 900000" oninput="pkCheckContact()" style="width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:14px; color:#fff; font-size:15px; outline:none;"/></div>
+          <div style="margin-bottom: 14px;"><label style="font-size: 12px; color: rgba(255,255,255,0.5); display:block; margin-bottom:5px;">Park name &amp; location</label><input type="text" id="pk-park" placeholder="e.g. Seaside Holiday Park, Hunstanton" style="width:100%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:14px; color:#fff; font-size:15px; outline:none;"/></div>
+          <div style="margin-bottom: 14px;"><label style="font-size: 12px; color: rgba(255,255,255,0.5); display:block; margin-bottom:5px;">Anything else? (optional)</label><textarea id="pk-note" placeholder="e.g. Mix of Baxi and Vaillant boilers, need pricing ASAP" style="width:100%; height:80px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:14px; color:#fff; font-size:14px; outline:none; resize:none;"></textarea></div>
+          <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+            <button class="pk-btn-back" onclick="pkBack('pk5','pk4',64)">← Back</button>
+            <button class="pk-btn-next" id="pn5" onclick="pkNext('pk5','pk6',100)">Review →</button>
+          </div>
+        </div>
+
+        <!-- Step 6: Summary -->
+        <div class="pk-step" id="pk6" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">✅</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6ab04c; margin-bottom: 8px;">Step 6 of 6</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 20px;">Ready to send?</div>
+          <div id="pk-summary" style="background:rgba(255,255,255,0.04); border:1px solid rgba(106,176,76,0.2); border-radius:10px; padding:16px 18px; font-size:13px; color:rgba(255,255,255,0.65); line-height:2.2; margin-bottom:20px;"></div>
+          <a id="pk-mailto" href="#" style="display:block; text-align:center; background:#6ab04c; color:#fff; padding:18px; border-radius:10px; font-size:16px; font-weight:700; text-decoration:none; letter-spacing:0.3px;">Send your enquiry</a>
+          <div style="margin-top:12px; text-align:center; font-size:12px; color:rgba(255,255,255,0.35);">Or call direct: <a href="tel:07568308119" style="color:#6ab04c;">07568 308 119</a></div>
+          <div style="display:flex; margin-top:16px;">
+            <button class="pk-btn-back" onclick="pkBack('pk6','pk5',80)">← Edit</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .pk-step { animation: pkFade 0.3s ease; }
+    @keyframes pkFade { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .pk-opt {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(106,176,76,0.2);
+      border-radius: 10px;
+      padding: 16px 18px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      transition: all 0.15s;
+      line-height: 1.4;
+    }
+    .pk-opt:hover { border-color: #6ab04c; background: rgba(106,176,76,0.08); }
+    .pk-opt.pk-picked { border-color: #6ab04c; background: rgba(106,176,76,0.15); color: #fff; font-weight: 600; }
+    .pk-btn-next { background:#6ab04c; color:#fff; border:none; border-radius:8px; padding:14px 26px; font-size:15px; font-weight:700; cursor:pointer; opacity:0.35; pointer-events:none; transition:opacity 0.2s; }
+    .pk-btn-next.pk-ready { opacity:1; pointer-events:auto; }
+    .pk-btn-back { background:transparent; color:rgba(255,255,255,0.45); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:14px 20px; font-size:14px; cursor:pointer; }
+  </style>
+
+  <script>
+    var pkA = { need:'', gas:'', units:'', cp12:'', name:'', phone:'', park:'', note:'' };
+
+    function pkPick(el, key, val, stepId, btnId) {
+      el.closest('.pk-step').querySelectorAll('.pk-opt').forEach(function(o){ o.classList.remove('pk-picked'); });
+      el.classList.add('pk-picked');
+      pkA[key] = val;
+      document.getElementById(btnId).classList.add('pk-ready');
+    }
+
+    function pkNext(fromId, toId, prog) {
+      document.getElementById(fromId).style.display = 'none';
+      document.getElementById(toId).style.display = 'block';
+      document.getElementById('pk-prog').style.width = prog + '%';
+      if (toId === 'pk6') pkBuildSummary();
+    }
+
+    function pkBack(fromId, toId, prog) {
+      document.getElementById(fromId).style.display = 'none';
+      document.getElementById(toId).style.display = 'block';
+      document.getElementById('pk-prog').style.width = prog + '%';
+    }
+
+    function pkCheckContact() {
+      var name = document.getElementById('pk-name').value.trim();
+      var phone = document.getElementById('pk-phone').value.trim();
+      if (name.length > 1 && phone.length > 7) {
+        pkA.name = name; pkA.phone = phone;
+        document.getElementById('pn5').classList.add('pk-ready');
+      } else {
+        document.getElementById('pn5').classList.remove('pk-ready');
+      }
+    }
+
+    function pkBuildSummary() {
+      pkA.name = document.getElementById('pk-name').value.trim();
+      pkA.phone = document.getElementById('pk-phone').value.trim();
+      pkA.park = document.getElementById('pk-park').value.trim();
+      pkA.note = document.getElementById('pk-note').value.trim();
+      document.getElementById('pk-summary').innerHTML =
+        '<span style="color:rgba(255,255,255,0.4);">Need:</span> <span style="color:#6ab04c;font-weight:600;">' + pkA.need + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Gas type:</span> <span style="color:#fff;">' + pkA.gas + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Units on site:</span> <span style="color:#fff;">' + pkA.units + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Last CP12:</span> <span style="color:#fff;">' + pkA.cp12 + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Contact:</span> <span style="color:#fff;">' + pkA.name + ' · ' + pkA.phone + '</span>' +
+        (pkA.park ? '<br><span style="color:rgba(255,255,255,0.4);">Park:</span> <span style="color:#fff;">' + pkA.park + '</span>' : '') +
+        (pkA.note ? '<br><span style="color:rgba(255,255,255,0.4);">Note:</span> <span style="color:#fff;">' + pkA.note + '</span>' : '');
+      var body = 'PARK OPERATOR ENQUIRY\n\nNeed: ' + pkA.need + '\nGas type: ' + pkA.gas + '\nUnits: ' + pkA.units + '\nLast CP12: ' + pkA.cp12 + '\nContact: ' + pkA.name + '\nPhone: ' + pkA.phone + (pkA.park ? '\nPark: ' + pkA.park : '') + (pkA.note ? '\nNote: ' + pkA.note : '');
+      document.getElementById('pk-mailto').href = 'mailto:lee@vortexcarbon.co.uk?subject=Park Enquiry — ' + encodeURIComponent(pkA.units) + ' units&body=' + encodeURIComponent(body);
+    }
+  </script>
+
+  <!-- HOLIDAY HOME CONCIERGE -->
+  <section id="home-care" style="background: linear-gradient(160deg, #0d1b2a 0%, #1a2e1a 100%); padding: 100px 5%; position: relative; overflow: hidden;">
+
+    <!-- Subtle background pattern -->
+    <div style="position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);background-size:20px 20px;pointer-events:none;"></div>
+
+    <div style="max-width: 1100px; margin: 0 auto; position: relative;">
+
+      <div style="text-align: center; margin-bottom: 64px;">
+        <div class="section-label" style="color:#6ab04c;">Holiday &amp; Second Homes</div>
+        <h2 style="color:#fff; font-size:clamp(2rem,4vw,3rem); margin-bottom:18px;">Vortex Home Care</h2>
+        <p style="color:rgba(255,255,255,0.6); font-size:1.1rem; max-width:600px; margin:0 auto; line-height:1.8;">Your property is in North Norfolk. You might not be. Vortex Carbon covers everything gas and heating — so you don't have to worry about it from a distance.</p>
+      </div>
+
+      <!-- Two tier cards -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 60px;">
+
+        <!-- Basic -->
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; position: relative;">
+          <div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px;">Essential Cover</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">Home Safe</div>
+          <div style="color: rgba(255,255,255,0.45); font-size: 14px; margin-bottom: 32px;">The essentials — done once a year.</div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Annual CP12 gas safety certificate for all appliances</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Full boiler service — clean, inspect &amp; test</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Pre-season check before your rental period</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Written report emailed to you after every visit</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Gas Safe certificate issued same day</span></div>
+          </div>
+
+          <a href="#park-booking" style="display:block; text-align:center; border: 1.5px solid rgba(106,176,76,0.5); color:#6ab04c; padding:16px; border-radius:10px; font-size:15px; font-weight:700; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='rgba(106,176,76,0.1)'" onmouseout="this.style.background='transparent'">Enquire about Home Safe →</a>
+        </div>
+
+        <!-- Premium -->
+        <div style="background: linear-gradient(135deg, rgba(106,176,76,0.12) 0%, rgba(27,58,107,0.2) 100%); border: 1.5px solid rgba(106,176,76,0.4); border-radius: 20px; padding: 40px; position: relative;">
+          <div style="position:absolute;top:20px;right:20px;background:#6ab04c;color:#fff;font-size:11px;font-weight:800;letter-spacing:1.5px;padding:5px 12px;border-radius:20px;text-transform:uppercase;">Most Popular</div>
+          <div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #6ab04c; margin-bottom: 14px;">Full Cover</div>
+          <div style="font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 6px;">Home Guard</div>
+          <div style="color: rgba(255,255,255,0.45); font-size: 14px; margin-bottom: 32px;">Everything in Home Safe, plus priority cover all year.</div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;"><strong style="color:#fff;">Everything in Home Safe</strong></span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Priority emergency call-out — you jump the queue</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">End-of-season winterisation &amp; boiler shutdown check</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Letting agent liaison — Vortex Carbon deals with them directly</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Key holder access — Vortex Carbon attends when you can't</span></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><span style="color:#6ab04c;font-size:17px;flex-shrink:0;margin-top:2px;">✓</span><span style="color:rgba(255,255,255,0.75);font-size:15px;line-height:1.5;">Photo evidence &amp; detailed report after every visit</span></div>
+          </div>
+
+          <a href="tel:07568308119" style="display:block; text-align:center; background:#6ab04c; color:#fff; padding:16px; border-radius:10px; font-size:15px; font-weight:700; text-decoration:none;">Call Vortex Carbon to discuss Home Guard →</a>
+        </div>
+
+      </div>
+
+      <!-- Concierge add-on strip -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,215,100,0.2); border-radius: 20px; padding: 40px; margin-bottom: 40px;">
+        <div style="display: flex; align-items: flex-start; gap: 28px; flex-wrap: wrap;">
+          <div style="flex-shrink:0;">
+            <div style="font-size: 48px; line-height:1;">🌸</div>
+          </div>
+          <div style="flex:1; min-width: 260px;">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,215,100,0.8); margin-bottom: 8px;">Optional Add-On</div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 10px;">Guest-Ready Concierge</div>
+            <p style="color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.8; margin-bottom: 20px;">You're in London. Your guests arrive at 4pm. Vortex Carbon is already there — property aired, welcome flowers on the table, hamper in the kitchen, towels folded, heating timed perfectly. You just get the five-star review.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div style="display:flex;align-items:center;gap:10px;"><span style="color:rgba(255,215,100,0.8);">✦</span><span style="color:rgba(255,255,255,0.7);font-size:14px;">Welcome flowers &amp; gift placement</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="color:rgba(255,215,100,0.8);">✦</span><span style="color:rgba(255,255,255,0.7);font-size:14px;">Pre-arrival airing &amp; heating on</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="color:rgba(255,215,100,0.8);">✦</span><span style="color:rgba(255,255,255,0.7);font-size:14px;">Property check-in &amp; photo report</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="color:rgba(255,215,100,0.8);">✦</span><span style="color:rgba(255,255,255,0.7);font-size:14px;">Post-checkout damage walk-around</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="color:rgba(255,215,100,0.8);">✦</span><span style="color:rgba(255,255,255,0.7);font-size:14px;">Key hand-off to guests</span></div>
+              <div style="display:flex;align-items:center;gap:10px;"><span style="color:rgba(255,215,100,0.8);">✦</span><span style="color:rgba(255,255,255,0.7);font-size:14px;">Letting agent liaison &amp; updates</span></div>
+            </div>
+          </div>
+          <div style="flex-shrink:0; display:flex; align-items:center;">
+            <a href="tel:07568308119" style="display:block; background: rgba(255,215,100,0.12); border: 1.5px solid rgba(255,215,100,0.35); color: rgba(255,215,100,0.9); padding: 16px 24px; border-radius: 12px; font-size: 15px; font-weight: 700; text-decoration: none; white-space:nowrap; text-align:center;">Call to discuss<br><span style="font-size:13px;font-weight:400;opacity:0.7;">bespoke pricing</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust strip -->
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; text-align: center;">
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:28px 20px;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">🔑</div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 6px;">Key Holder Access</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6;">Vortex Carbon attends so you don't have to drive from home at short notice</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:28px 20px;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">📲</div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 6px;">Always in the Loop</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6;">Full written report and photos after every single visit</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:28px 20px;">
+          <div style="font-size: 2rem; margin-bottom: 8px;">🛡️</div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 6px;">Legally Covered</div>
+          <div style="font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6;">Gas Safe registered, fully insured — your letting obligations met</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- WHY US -->
   <section id="why">
     <div class="section-label">Why Choose Us</div>
@@ -1523,6 +1906,181 @@
       See All Our Google Reviews
     </a>
   </section>
+
+  <!-- BOOKING QUESTIONNAIRE -->
+  <section id="book" style="background: #080f1e; padding: 90px 5%;">
+    <div style="max-width: 620px; margin: 0 auto; text-align: center;">
+      <div class="section-label" style="color: #6ab04c;">Book a Job</div>
+      <h2 style="color: #fff; margin-bottom: 10px;">Get a Quick Quote</h2>
+      <p style="color: rgba(255,255,255,0.6); font-size: 1rem; line-height: 1.7; margin-bottom: 40px;">Tell us what you need in under a minute. We'll get back to you fast.</p>
+
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 36px; text-align: left;">
+
+        <!-- Progress bar -->
+        <div style="height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 32px; overflow: hidden;">
+          <div id="bq-prog" style="height: 100%; border-radius: 2px; background: #6ab04c; width: 20%; transition: width 0.4s ease;"></div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="bq-step" id="bq1">
+          <div style="font-size: 30px; margin-bottom: 10px;">🔧</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(106,176,76,0.8); margin-bottom: 8px;">Step 1 of 5</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px; line-height: 1.3;">What do you need help with?</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="bq-opt" onclick="bqPick(this,'job','Boiler repair or service','bq1','bn1')">🔥 Boiler repair or service</div>
+            <div class="bq-opt" onclick="bqPick(this,'job','Gas safety certificate (CP12)','bq1','bn1')">📋 Gas safety certificate</div>
+            <div class="bq-opt" onclick="bqPick(this,'job','Plumbing repair','bq1','bn1')">💧 Plumbing repair</div>
+            <div class="bq-opt" onclick="bqPick(this,'job','Air conditioning','bq1','bn1')">❄️ Air conditioning</div>
+            <div class="bq-opt" onclick="bqPick(this,'job','Heating system fault','bq1','bn1')">🌡️ Heating system fault</div>
+            <div class="bq-opt" onclick="bqPick(this,'job','Not sure — need advice','bq1','bn1')">🤔 Not sure — need advice</div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
+            <button class="bq-btn-next" id="bn1" onclick="bqNext('bq1','bq2',40)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bq-step" id="bq2" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">🏠</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(106,176,76,0.8); margin-bottom: 8px;">Step 2 of 5</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px; line-height: 1.3;">What type of property?</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="bq-opt" onclick="bqPick(this,'prop','My home','bq2','bn2')">🏡 My home</div>
+            <div class="bq-opt" onclick="bqPick(this,'prop','Rental property','bq2','bn2')">🔑 Rental property</div>
+            <div class="bq-opt" onclick="bqPick(this,'prop','Holiday lodge or caravan','bq2','bn2')">🏕️ Holiday lodge or caravan</div>
+            <div class="bq-opt" onclick="bqPick(this,'prop','Commercial premises','bq2','bn2')">🏢 Commercial premises</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+            <button class="bq-btn-back" onclick="bqBack('bq2','bq1',20)">← Back</button>
+            <button class="bq-btn-next" id="bn2" onclick="bqNext('bq2','bq3',60)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bq-step" id="bq3" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">⏰</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(106,176,76,0.8); margin-bottom: 8px;">Step 3 of 5</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px; line-height: 1.3;">How urgent is it?</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="bq-opt" onclick="bqPick(this,'urgency','Emergency — no heating or hot water','bq3','bn3')" style="border-color: rgba(229,80,57,0.3);">🚨 Emergency — no heating or hot water</div>
+            <div class="bq-opt" onclick="bqPick(this,'urgency','Soon — within the next few days','bq3','bn3')" style="border-color: rgba(249,202,36,0.3);">📅 Soon — within the next few days</div>
+            <div class="bq-opt" onclick="bqPick(this,'urgency','Routine — happy to wait for a convenient slot','bq3','bn3')" style="border-color: rgba(106,176,76,0.3);">🗓️ Routine — happy to wait</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+            <button class="bq-btn-back" onclick="bqBack('bq3','bq2',40)">← Back</button>
+            <button class="bq-btn-next" id="bn3" onclick="bqNext('bq3','bq4',80)">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bq-step" id="bq4" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">📬</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(106,176,76,0.8); margin-bottom: 8px;">Step 4 of 5</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 24px; line-height: 1.3;">Your details — We'll get back to you fast.</div>
+          <div style="margin-bottom: 14px;"><label style="font-size: 12px; color: rgba(255,255,255,0.5); display: block; margin-bottom: 5px;">Your name</label><input type="text" id="bq-name" placeholder="e.g. Sarah" oninput="bqCheckContact()" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 14px; color: #fff; font-size: 14px; outline: none;"/></div>
+          <div style="margin-bottom: 14px;"><label style="font-size: 12px; color: rgba(255,255,255,0.5); display: block; margin-bottom: 5px;">Phone number</label><input type="tel" id="bq-phone" placeholder="e.g. 07700 900000" oninput="bqCheckContact()" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 14px; color: #fff; font-size: 14px; outline: none;"/></div>
+          <div style="margin-bottom: 14px;"><label style="font-size: 12px; color: rgba(255,255,255,0.5); display: block; margin-bottom: 5px;">Anything else useful? (optional)</label><textarea id="bq-note" placeholder="e.g. Baxi boiler, been losing pressure for 3 weeks" style="width: 100%; height: 80px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 12px 14px; color: #fff; font-size: 14px; outline: none; resize: none;"></textarea></div>
+          <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+            <button class="bq-btn-back" onclick="bqBack('bq4','bq3',60)">← Back</button>
+            <button class="bq-btn-next" id="bn4" onclick="bqNext('bq4','bq5',100)">Review →</button>
+          </div>
+        </div>
+
+        <!-- Step 5 — Summary -->
+        <div class="bq-step" id="bq5" style="display:none;">
+          <div style="font-size: 30px; margin-bottom: 10px;">✅</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(106,176,76,0.8); margin-bottom: 8px;">Step 5 of 5</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 20px;">Ready to send?</div>
+          <div id="bq-summary" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px 18px; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 2; margin-bottom: 20px;"></div>
+          <a id="bq-mailto" href="#" style="display: block; text-align: center; background: #6ab04c; color: #fff; padding: 16px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none;">Send your enquiry</a>
+          <div style="display: flex; justify-content: flex-start; margin-top: 16px;">
+            <button class="bq-btn-back" onclick="bqBack('bq5','bq4',80)">← Edit</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .bq-step { animation: bqFade 0.3s ease; }
+    @keyframes bqFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .bq-opt {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .bq-opt:hover { border-color: rgba(106,176,76,0.5); background: rgba(106,176,76,0.06); }
+    .bq-opt.bq-picked { border-color: #6ab04c; background: rgba(106,176,76,0.12); color: #fff; }
+    .bq-btn-next {
+      background: #6ab04c; color: #fff; border: none;
+      border-radius: 8px; padding: 11px 22px; font-size: 14px; font-weight: 700;
+      cursor: pointer; opacity: 0.35; pointer-events: none; transition: opacity 0.2s;
+    }
+    .bq-btn-next.bq-ready { opacity: 1; pointer-events: auto; }
+    .bq-btn-back {
+      background: transparent; color: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+      padding: 11px 18px; font-size: 13px; cursor: pointer;
+    }
+  </style>
+
+  <script>
+    var bqAnswers = { job:'', prop:'', urgency:'', name:'', phone:'', note:'' };
+
+    function bqPick(el, key, val, stepId, btnId) {
+      el.closest('.bq-step').querySelectorAll('.bq-opt').forEach(function(o){ o.classList.remove('bq-picked'); });
+      el.classList.add('bq-picked');
+      bqAnswers[key] = val;
+      document.getElementById(btnId).classList.add('bq-ready');
+    }
+
+    function bqNext(fromId, toId, prog) {
+      document.getElementById(fromId).style.display = 'none';
+      var toEl = document.getElementById(toId);
+      toEl.style.display = 'block';
+      document.getElementById('bq-prog').style.width = prog + '%';
+      if (toId === 'bq5') bqBuildSummary();
+    }
+
+    function bqBack(fromId, toId, prog) {
+      document.getElementById(fromId).style.display = 'none';
+      document.getElementById(toId).style.display = 'block';
+      document.getElementById('bq-prog').style.width = prog + '%';
+    }
+
+    function bqCheckContact() {
+      var name = document.getElementById('bq-name').value.trim();
+      var phone = document.getElementById('bq-phone').value.trim();
+      if (name.length > 1 && phone.length > 7) {
+        bqAnswers.name = name;
+        bqAnswers.phone = phone;
+        document.getElementById('bn4').classList.add('bq-ready');
+      } else {
+        document.getElementById('bn4').classList.remove('bq-ready');
+      }
+    }
+
+    function bqBuildSummary() {
+      bqAnswers.name = document.getElementById('bq-name').value.trim();
+      bqAnswers.phone = document.getElementById('bq-phone').value.trim();
+      bqAnswers.note = document.getElementById('bq-note').value.trim();
+      document.getElementById('bq-summary').innerHTML =
+        '<span style="color:rgba(255,255,255,0.4);">Job:</span> <span style="color:#fff;">' + bqAnswers.job + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Property:</span> <span style="color:#fff;">' + bqAnswers.prop + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Urgency:</span> <span style="color:#fff;">' + bqAnswers.urgency + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Name:</span> <span style="color:#fff;">' + bqAnswers.name + '</span><br>' +
+        '<span style="color:rgba(255,255,255,0.4);">Phone:</span> <span style="color:#fff;">' + bqAnswers.phone + '</span>' +
+        (bqAnswers.note ? '<br><span style="color:rgba(255,255,255,0.4);">Note:</span> <span style="color:#fff;">' + bqAnswers.note + '</span>' : '');
+      var body = 'Job: ' + bqAnswers.job + '\nProperty: ' + bqAnswers.prop + '\nUrgency: ' + bqAnswers.urgency + '\nName: ' + bqAnswers.name + '\nPhone: ' + bqAnswers.phone + (bqAnswers.note ? '\nNote: ' + bqAnswers.note : '');
+      document.getElementById('bq-mailto').href = 'mailto:lee@vortexcarbon.co.uk?subject=Booking Enquiry — ' + encodeURIComponent(bqAnswers.job) + '&body=' + encodeURIComponent(body);
+    }
+  </script>
 
   <!-- CONTACT -->
   <section id="contact">
