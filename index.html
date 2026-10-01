@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<script>document.documentElement.classList.add("js")</script>
 <style>
 :root{
   --navy:#0C3654; --navy-2:#082842; --green:#5AB432; --green-ink:#367A1A; --teal:#0CA8A2; --cyan:#2AB4C6; --coral:#F25442;
@@ -38,7 +39,7 @@ a{color:inherit;text-underline-offset:.2em;text-decoration-thickness:1px}
 img,svg{display:block;max-width:100%}
 h1,h2,h3{color:var(--navy);margin:0;font-family:var(--f);text-wrap:balance}
 h1{font-size:clamp(46px,6.6vw,96px);line-height:.92;font-weight:850;font-stretch:118%;letter-spacing:-.035em}
-h2{font-size:clamp(34px,5vw,64px);line-height:.98;font-weight:820;font-stretch:115%;letter-spacing:-.03em}
+h2{font-size:clamp(36px,5.4vw,72px);line-height:.96;font-weight:820;font-stretch:115%;letter-spacing:-.03em}
 h3{font-size:20px;line-height:1.2;font-weight:700;font-stretch:106%;letter-spacing:-.01em}
 p{margin:0}
 .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
@@ -50,7 +51,7 @@ section{padding-block:clamp(64px,9vw,128px)}
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:6px;border:2px solid var(--navy);background:var(--paper);color:var(--navy);
   font:700 16px/1 var(--f);font-stretch:108%;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform 160ms var(--ease),background-color 200ms var(--ease),color 200ms var(--ease),border-color 200ms var(--ease)}
-.btn svg{width:18px;height:18px;flex:none}
+.btn svg{width:18px;height:18px;flex:none;transition:transform 220ms var(--ease)}
 .btn:active{transform:scale(.97)}
 .btn.go{background:var(--green);border-color:var(--green);color:var(--navy)}
 .btn.dark{background:var(--navy);color:#fff}
@@ -58,6 +59,9 @@ section{padding-block:clamp(64px,9vw,128px)}
 .on-navy .btn.go{background:var(--green);border-color:var(--green);color:var(--navy)}
 @media (hover:hover) and (pointer:fine){
   .btn:hover{background:var(--navy);color:#fff}
+  .btn:hover svg:last-child:not(:first-child){transform:translateX(3px)}
+  .board .r{transition:background-color 200ms var(--ease)}
+  .board .r:hover{background:var(--paper-2)}
   .btn.go:hover{background:#6CC444;border-color:#6CC444;color:var(--navy)}
   .btn.dark:hover{background:var(--navy-2)}
   .on-navy .btn:hover{background:#fff;color:var(--navy);border-color:#fff}
@@ -67,7 +71,10 @@ section{padding-block:clamp(64px,9vw,128px)}
 /* header */
 .top{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:28px;min-height:76px}
-.top .logo img{height:54px;width:auto}
+.top{transition:box-shadow 240ms var(--ease)}
+.top.scrolled{box-shadow:0 10px 30px -18px rgba(7,30,51,.35)}
+.top .logo img{height:54px;width:auto;transform-origin:left center;transition:transform 240ms var(--ease)}
+.top.scrolled .logo img{transform:scale(.86)}
 .top nav{display:flex;gap:26px;margin-left:auto}
 .top nav a{text-decoration:none;font-weight:600;font-size:15.5px;color:var(--navy);padding-block:10px;background:linear-gradient(var(--green),var(--green)) 0 100%/0 3px no-repeat;transition:background-size 240ms var(--ease)}
 @media (hover:hover) and (pointer:fine){ .top nav a:hover{background-size:100% 3px} }
@@ -82,35 +89,53 @@ section{padding-block:clamp(64px,9vw,128px)}
 .stripe{height:10px;background:repeating-linear-gradient(90deg,var(--navy) 0 34px,transparent 34px 42px,var(--green) 42px 64px,transparent 64px 72px,var(--teal) 72px 92px,transparent 92px 100px,var(--cyan) 100px 112px,transparent 112px 120px,var(--coral) 120px 130px,transparent 130px 138px,var(--navy) 138px 150px,transparent 150px 158px)}
 
 /* hero */
-.hero{position:relative;overflow:hidden;padding-block:clamp(40px,7vw,96px) clamp(48px,7vw,96px)}
-.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,72px);align-items:start}
-.latest{display:grid;gap:22px;padding-top:clamp(0px,2vw,24px)}
-.latest h1{font-size:clamp(40px,5vw,70px);line-height:.98;font-stretch:115%}
-.latest .say{font-size:clamp(18px,1.6vw,21px);max-width:38ch;color:var(--text)}
+.hero{position:relative;overflow:hidden;background:var(--navy);color:#DCE6EE;padding-block:clamp(40px,6vw,88px) clamp(96px,10vw,148px)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,80px);align-items:center}
+.latest{display:grid;gap:24px}
+.nw{white-space:nowrap}
+.hero h1{color:#fff;font-size:clamp(42px,4.7vw,68px);line-height:.96;font-stretch:118%}
+.latest .say{font-size:clamp(18px,1.6vw,21px);max-width:36ch;color:#DCE6EE}
 .latest .row{display:flex;flex-wrap:wrap;gap:10px}
-.watch{display:inline-flex;align-items:center;gap:10px;justify-self:start;font-weight:700;font-size:16.5px;color:var(--navy);text-decoration:underline;text-decoration-color:var(--green);text-decoration-thickness:2px;text-underline-offset:.3em;padding-block:6px}
-.watch svg{width:30px;height:30px;padding:8px;border-radius:50%;background:var(--navy);color:#fff;flex:none;transition:transform 160ms var(--ease)}
-.watch:active svg{transform:scale(.94)}
+.watch{display:inline-flex;align-items:center;gap:12px;justify-self:start;font-weight:700;font-size:16.5px;color:#fff;text-decoration:underline;text-decoration-color:var(--green);text-decoration-thickness:2px;text-underline-offset:.3em;padding-block:4px}
+.watch svg{width:32px;height:32px;padding:9px;border-radius:50%;background:var(--green);color:var(--navy);flex:none;transition:transform 160ms var(--ease)}
+.watch:active svg{transform:scale(.92)}
 .watch[hidden]{display:none}
-.hero .where{font-size:15.5px;color:var(--mute);max-width:44ch;padding-top:18px;border-top:1px solid var(--line)}
-.hero .where b{color:var(--navy);font-weight:700}
-.burst{position:absolute;right:-180px;top:-120px;width:820px;height:820px;z-index:0;pointer-events:none}
-.burst line{transform-box:fill-box;transform-origin:center;animation:dash-in 520ms var(--ease) both}
-@keyframes dash-in{from{opacity:0;transform:scale(.6)}}
-@media (max-width:980px){ .hero .wrap{grid-template-columns:minmax(0,1fr)} .burst{width:520px;height:520px;right:-230px;top:-170px;opacity:.55} }
+.hero .where{font-size:15.5px;color:#B9C9D6;max-width:44ch;padding-top:20px;border-top:1px solid rgba(255,255,255,.16)}
+.hero .where b{color:#fff;font-weight:700}
+.hfilm{margin:0;display:grid;gap:16px}
+.hero .film{aspect-ratio:4/3;border-radius:16px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 40px 80px -40px rgba(0,0,0,.7)}
+.burst{position:absolute;left:38%;top:50%;width:1100px;height:1100px;translate:-10% -50%;z-index:0;pointer-events:none;opacity:.4}
+.burst line{transform-box:fill-box;transform-origin:center;animation:dash-in 700ms var(--ease) both}
+@keyframes dash-in{from{opacity:0;transform:scale(.4)}}
+@media (max-width:980px){ .hero .wrap{grid-template-columns:minmax(0,1fr)} .hero .film{aspect-ratio:1/1} .burst{left:auto;right:-420px;top:-300px;translate:none;width:800px;height:800px} }
+
+/* film chapters */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.steps button{all:unset;box-sizing:border-box;cursor:pointer;display:grid;gap:9px;width:100%;padding:2px 0 8px;color:#9FB2C2;font-weight:650;font-size:14.5px;transition:color 200ms var(--ease)}
+.steps i{display:block;height:3px;border-radius:2px;background:rgba(255,255,255,.18);overflow:hidden}
+.steps b{display:block;height:100%;background:var(--green);transform-origin:left;transform:scaleX(0)}
+.steps button[data-on]{color:#fff}
+.steps button:active{transform:scale(.97)}
+.steps button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:2px}
+@media (hover:hover) and (pointer:fine){ .steps button:hover{color:#fff} }
 
 /* problem picker */
-.ask{background:var(--paper);border:2px solid var(--navy);border-radius:10px;overflow:hidden}
-.ask h2{font-size:22px;font-stretch:108%;letter-spacing:-.01em;padding:18px 20px 14px;line-height:1.2}
+.askwrap{position:relative;z-index:2;margin-top:clamp(-96px,-7vw,-56px)}
+.ask{background:var(--paper);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);box-shadow:0 0 0 1px rgba(12,54,84,.14),0 40px 70px -40px rgba(7,30,51,.5)}
+.ask h2{grid-column:1 / -1}
+.ask .ans{border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:860px){ .ask{grid-template-columns:minmax(0,1fr)} .ask .ans{border-left:0} }
+.ask h2{font-size:clamp(22px,2.2vw,28px);font-stretch:112%;letter-spacing:-.015em;padding:22px 24px 16px;line-height:1.15}
 .ask .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
-.ask .opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:58px;padding:12px 20px;font-weight:600;font-size:16px;color:var(--navy);border-bottom:1px solid var(--line);transition:background-color 180ms var(--ease)}
+.ask .opt{all:unset;transition:background-color 180ms var(--ease),color 180ms var(--ease);box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:58px;padding:12px 20px;font-weight:600;font-size:16px;color:var(--navy);border-bottom:1px solid var(--line)}
 .ask .opt:nth-child(odd){border-right:1px solid var(--line)}
 .ask .opt svg{width:16px;height:16px;flex:none;color:var(--mute);transition:transform 200ms var(--ease)}
 .ask .opt[aria-pressed="true"]{background:var(--navy);color:#fff}
 .ask .opt[aria-pressed="true"] svg{color:var(--green);transform:rotate(90deg)}
+.ask .opt:active{background:var(--paper-2)}
 .ask .opt:focus-visible{outline-offset:-3px}
 @media (hover:hover) and (pointer:fine){ .ask .opt:not([aria-pressed="true"]):hover{background:var(--paper-2)} }
-.ask .ans{padding:20px;display:grid;gap:14px;min-height:150px;background:var(--paper-2)}
+.ask .ans{padding:24px;display:grid;gap:14px;align-content:center;min-height:150px;background:var(--paper-2)}
 .ask .ans .price{font-size:clamp(34px,4vw,44px);font-weight:850;font-stretch:115%;color:var(--navy);letter-spacing:-.02em;line-height:1}
 .ask .ans .price small{font-size:15px;font-weight:500;font-stretch:100%;color:var(--mute);letter-spacing:0;margin-left:6px}
 .ask .ans p{max-width:46ch}
@@ -120,14 +145,14 @@ section{padding-block:clamp(64px,9vw,128px)}
 @media (max-width:420px){ .ask .opt{padding:12px 14px;font-size:15px;min-height:64px} }
 
 /* proof bar */
-.proof{background:var(--navy);color:#fff}
-.proof ul{list-style:none;margin:0 auto;padding-block:18px;display:flex;flex-wrap:wrap;gap:10px 34px;font-weight:600;font-size:15.5px}
+.proof{color:var(--navy)}
+.proof ul{list-style:none;margin:0 auto;padding-block:28px 4px;display:flex;flex-wrap:wrap;gap:10px 34px;font-weight:600;font-size:15.5px}
 .proof li{display:flex;align-items:center;gap:10px}
 .proof li::before{content:"";width:14px;height:4px;border-radius:2px;background:var(--c,var(--green))}
 
 /* services and prices board */
 .board{border-top:2px solid var(--navy)}
-.board .r{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) 170px 190px;gap:8px 28px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.board .r{border-radius:8px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr) 170px 190px;gap:8px 28px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
 .board .r h3{font-size:clamp(19px,1.8vw,23px)}
 .board .r p{color:var(--mute);font-size:16px}
 .board .r .pr{font-weight:850;font-stretch:112%;font-size:26px;color:var(--navy);letter-spacing:-.02em;line-height:1.05}
@@ -143,10 +168,32 @@ section{padding-block:clamp(64px,9vw,128px)}
   .board .r .btn{grid-column:1 / -1;grid-row:3;justify-self:start;margin-top:8px}
 }
 
+/* reveal on scroll */
+.js [data-r]{opacity:0;transform:translateY(20px);transition:opacity 600ms var(--ease) calc(var(--i,0) * 70ms),transform 800ms var(--ease) calc(var(--i,0) * 70ms)}
+.js [data-r].in{opacity:1;transform:none}
+.js .hfilm[data-r]{transform:translateY(24px) scale(.97)}
+.js .hfilm[data-r].in{transform:none}
+
+/* other jobs */
+.jobs{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.6fr);gap:clamp(24px,4vw,56px);align-items:start}
+.jobs-head h3{font-size:clamp(24px,2.4vw,32px);font-stretch:112%;letter-spacing:-.015em;line-height:1.1}
+.jobs-head p{color:var(--mute);margin-top:10px;max-width:30ch}
+.jobs ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.jobs a{position:relative;display:grid;gap:6px;height:100%;padding:20px 52px 20px 20px;border:1.5px solid var(--line);border-radius:12px;text-decoration:none;background:#fff;transition:border-color 200ms var(--ease),transform 160ms var(--ease)}
+.jobs li:last-child:nth-child(odd){grid-column:1 / -1}
+.jobs a{align-content:start}
+.jobs a b{font-size:18px;font-weight:750;font-stretch:106%;color:var(--navy)}
+.jobs a span{color:var(--mute);font-size:15px;line-height:1.45}
+.jobs a svg{position:absolute;right:18px;top:22px;width:18px;height:18px;color:var(--green-ink);transition:transform 220ms var(--ease)}
+.jobs a:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){ .jobs a:hover{border-color:var(--navy)} .jobs a:hover svg{transform:translateX(3px)} }
+@media (max-width:900px){ .jobs{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:560px){ .jobs ul{grid-template-columns:minmax(0,1fr)} }
+
 /* films */
-.film{position:relative;border-radius:10px;overflow:hidden;background:#071E33;aspect-ratio:4/5}
+.film{position:relative;border-radius:14px;overflow:hidden;background:#071E33;aspect-ratio:1/1}
 .film canvas{width:100%;height:100%;display:block}
-.film .ctl{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:10px}
+.film .ctl{position:absolute;left:12px;bottom:12px;display:flex}
 .film .ctl button{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);color:#fff;transition:transform 160ms var(--ease),background-color 200ms var(--ease)}
 .film .ctl button:active{transform:scale(.94)}
 .film .ctl button svg{width:18px;height:18px}
@@ -278,6 +325,7 @@ footer .emerg b{color:#fff}
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important;transition-duration:1ms!important}
+  .js [data-r]{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
 </style>
@@ -310,18 +358,24 @@ footer .emerg b{color:#fff}
 <div class="stripe" aria-hidden="true"></div>
 
 <main id="top">
-  <div class="hero">
+  <div class="hero on-navy">
     <svg class="burst" viewBox="0 0 820 820" aria-hidden="true"><line x1="445.3" y1="470.4" x2="450.8" y2="479.8" stroke="#0CA8A2" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:8ms"/><line x1="343.1" y1="430.5" x2="325.0" y2="436.0" stroke="#0CA8A2" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:24ms"/><line x1="342.3" y1="392.3" x2="327.2" y2="388.4" stroke="#0C3654" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:28ms"/><line x1="347.3" y1="378.8" x2="334.7" y2="372.6" stroke="#0C3654" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:32ms"/><line x1="374.8" y1="349.5" x2="365.8" y2="334.1" stroke="#2AB4C6" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:36ms"/><line x1="397.8" y1="341.1" x2="394.4" y2="322.4" stroke="#5AB432" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:40ms"/><line x1="427.4" y1="342.2" x2="431.8" y2="324.8" stroke="#0CA8A2" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:44ms"/><line x1="456.6" y1="357.8" x2="467.3" y2="345.8" stroke="#5AB432" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:48ms"/><line x1="476.4" y1="387.8" x2="490.7" y2="383.0" stroke="#0C3654" stroke-width="4.0" stroke-linecap="round" opacity="1.00" style="animation-delay:52ms"/><line x1="512.0" y1="469.4" x2="527.9" y2="478.7" stroke="#0CA8A2" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:45ms"/><line x1="495.5" y1="491.3" x2="509.9" y2="505.0" stroke="#5AB432" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:49ms"/><line x1="464.7" y1="514.5" x2="472.5" y2="529.3" stroke="#5AB432" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:53ms"/><line x1="430.7" y1="526.2" x2="435.6" y2="553.8" stroke="#5AB432" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:57ms"/><line x1="394.7" y1="527.0" x2="391.4" y2="552.5" stroke="#0CA8A2" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:61ms"/><line x1="342.5" y1="506.8" x2="331.2" y2="523.0" stroke="#5AB432" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:65ms"/><line x1="317.5" y1="483.2" x2="300.7" y2="496.5" stroke="#0C3654" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:69ms"/><line x1="296.3" y1="441.4" x2="272.8" y2="447.9" stroke="#0C3654" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:73ms"/><line x1="292.0" y1="407.8" x2="268.9" y2="407.3" stroke="#2AB4C6" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:77ms"/><line x1="299.9" y1="367.6" x2="280.9" y2="360.2" stroke="#2AB4C6" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:81ms"/><line x1="312.9" y1="343.0" x2="296.5" y2="331.6" stroke="#0CA8A2" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:85ms"/><line x1="410.7" y1="292.0" x2="410.8" y2="264.8" stroke="#0C3654" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:97ms"/><line x1="447.2" y1="298.0" x2="453.1" y2="280.1" stroke="#0C3654" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:101ms"/><line x1="493.0" y1="326.2" x2="506.3" y2="312.7" stroke="#5AB432" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:105ms"/><line x1="517.4" y1="361.2" x2="535.9" y2="352.8" stroke="#0C3654" stroke-width="4.9" stroke-linecap="round" opacity="0.90" style="animation-delay:109ms"/><line x1="523.7" y1="530.9" x2="539.9" y2="548.2" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:90ms"/><line x1="496.2" y1="551.9" x2="511.0" y2="576.2" stroke="#5AB432" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:94ms"/><line x1="436.0" y1="573.9" x2="440.3" y2="600.8" stroke="#0CA8A2" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:98ms"/><line x1="400.5" y1="575.7" x2="398.9" y2="602.1" stroke="#F25442" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:102ms"/><line x1="350.6" y1="565.0" x2="340.6" y2="591.0" stroke="#5AB432" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:106ms"/><line x1="250.5" y1="456.1" x2="230.6" y2="461.9" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:122ms"/><line x1="244.2" y1="402.8" x2="210.9" y2="401.3" stroke="#0CA8A2" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:126ms"/><line x1="248.0" y1="373.7" x2="220.1" y2="367.5" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:130ms"/><line x1="271.0" y1="319.3" x2="247.1" y2="303.8" stroke="#5AB432" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:134ms"/><line x1="289.6" y1="295.7" x2="265.0" y2="272.4" stroke="#5AB432" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:138ms"/><line x1="331.4" y1="263.8" x2="320.9" y2="244.4" stroke="#2AB4C6" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:142ms"/><line x1="446.2" y1="248.0" x2="452.2" y2="221.3" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:154ms"/><line x1="501.9" y1="271.8" x2="518.8" y2="246.3" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:158ms"/><line x1="539.4" y1="306.0" x2="562.6" y2="287.4" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:162ms"/><line x1="556.7" y1="332.2" x2="578.7" y2="320.5" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:166ms"/><line x1="571.9" y1="373.2" x2="595.9" y2="367.7" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:170ms"/><line x1="575.8" y1="418.5" x2="606.4" y2="420.0" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:174ms"/><line x1="566.3" y1="465.8" x2="594.9" y2="476.0" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:178ms"/><line x1="554.9" y1="491.0" x2="581.3" y2="505.7" stroke="#0C3654" stroke-width="5.8" stroke-linecap="round" opacity="0.80" style="animation-delay:182ms"/><line x1="485.0" y1="610.4" x2="494.7" y2="636.4" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:135ms"/><line x1="435.6" y1="622.5" x2="440.1" y2="660.3" stroke="#5AB432" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:139ms"/><line x1="389.3" y1="623.0" x2="386.6" y2="651.0" stroke="#0C3654" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:143ms"/><line x1="357.0" y1="617.3" x2="349.1" y2="648.1" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:147ms"/><line x1="304.6" y1="596.2" x2="287.8" y2="625.9" stroke="#F25442" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:151ms"/><line x1="271.1" y1="572.8" x2="253.8" y2="593.1" stroke="#5AB432" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:155ms"/><line x1="237.1" y1="536.1" x2="211.5" y2="554.7" stroke="#0C3654" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:159ms"/><line x1="218.1" y1="504.7" x2="194.6" y2="516.3" stroke="#2AB4C6" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:163ms"/><line x1="202.5" y1="462.3" x2="165.4" y2="471.6" stroke="#2AB4C6" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:167ms"/><line x1="196.4" y1="423.0" x2="171.1" y2="424.6" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:171ms"/><line x1="202.8" y1="356.5" x2="176.6" y2="349.7" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:175ms"/><line x1="220.1" y1="311.3" x2="193.6" y2="297.6" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:179ms"/><line x1="275.1" y1="243.9" x2="258.5" y2="223.3" stroke="#2AB4C6" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:187ms"/><line x1="317.3" y1="217.1" x2="301.2" y2="183.6" stroke="#0C3654" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:191ms"/><line x1="394.9" y1="196.5" x2="392.8" y2="167.0" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:199ms"/><line x1="496.4" y1="214.2" x2="509.1" y2="185.5" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:207ms"/><line x1="534.4" y1="235.8" x2="555.6" y2="206.1" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:211ms"/><line x1="591.7" y1="296.9" x2="622.1" y2="277.9" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:219ms"/><line x1="606.6" y1="325.5" x2="631.8" y2="314.6" stroke="#5AB432" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:223ms"/><line x1="623.9" y1="417.4" x2="656.3" y2="418.6" stroke="#5AB432" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:231ms"/><line x1="571.9" y1="549.9" x2="596.2" y2="570.9" stroke="#0CA8A2" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:243ms"/><line x1="543.5" y1="577.2" x2="559.7" y2="597.5" stroke="#5AB432" stroke-width="6.7" stroke-linecap="round" opacity="0.70" style="animation-delay:247ms"/><line x1="416.0" y1="671.9" x2="416.8" y2="709.1" stroke="#2AB4C6" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:180ms"/><line x1="377.4" y1="670.0" x2="372.3" y2="710.9" stroke="#0CA8A2" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:184ms"/><line x1="312.0" y1="653.0" x2="296.2" y2="692.2" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:188ms"/><line x1="269.5" y1="631.2" x2="251.9" y2="658.9" stroke="#5AB432" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:192ms"/><line x1="159.2" y1="485.9" x2="118.5" y2="498.2" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:208ms"/><line x1="148.8" y1="430.7" x2="113.8" y2="433.5" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:212ms"/><line x1="149.3" y1="384.0" x2="116.4" y2="380.7" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:216ms"/><line x1="154.9" y1="350.1" x2="112.2" y2="340.1" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:220ms"/><line x1="167.6" y1="310.6" x2="133.1" y2="296.5" stroke="#5AB432" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:224ms"/><line x1="194.2" y1="261.5" x2="168.4" y2="243.7" stroke="#5AB432" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:228ms"/><line x1="217.0" y1="232.8" x2="190.4" y2="208.3" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:232ms"/><line x1="261.5" y1="194.1" x2="242.2" y2="166.0" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:236ms"/><line x1="296.5" y1="173.8" x2="282.2" y2="143.9" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:240ms"/><line x1="456.3" y1="152.1" x2="463.7" y2="110.9" stroke="#2AB4C6" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:252ms"/><line x1="531.0" y1="177.6" x2="548.6" y2="143.9" stroke="#2AB4C6" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:260ms"/><line x1="668.9" y1="369.7" x2="701.6" y2="364.6" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:280ms"/><line x1="670.8" y1="435.4" x2="705.3" y2="438.8" stroke="#0CA8A2" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:284ms"/><line x1="664.9" y1="470.4" x2="702.6" y2="479.4" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:288ms"/><line x1="560.2" y1="624.7" x2="583.5" y2="657.9" stroke="#0C3654" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:304ms"/><line x1="514.7" y1="650.2" x2="528.2" y2="681.2" stroke="#F25442" stroke-width="7.6" stroke-linecap="round" opacity="0.60" style="animation-delay:308ms"/><line x1="324.1" y1="707.9" x2="312.3" y2="748.9" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:225ms"/><line x1="223.7" y1="657.8" x2="197.2" y2="693.0" stroke="#2AB4C6" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:233ms"/><line x1="185.4" y1="623.7" x2="156.0" y2="651.6" stroke="#0CA8A2" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:237ms"/><line x1="108.9" y1="483.6" x2="73.0" y2="492.4" stroke="#5AB432" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:249ms"/><line x1="100.7" y1="431.4" x2="65.6" y2="433.8" stroke="#2AB4C6" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:253ms"/><line x1="124.6" y1="289.1" x2="83.7" y2="271.7" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:265ms"/><line x1="143.9" y1="251.0" x2="113.3" y2="232.8" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:269ms"/><line x1="164.5" y1="220.7" x2="133.9" y2="197.1" stroke="#5AB432" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:273ms"/><line x1="216.5" y1="167.8" x2="192.6" y2="137.8" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:277ms"/><line x1="331.0" y1="110.2" x2="321.2" y2="73.0" stroke="#F25442" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:289ms"/><line x1="424.3" y1="100.3" x2="426.0" y2="64.8" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:297ms"/><line x1="480.0" y1="108.0" x2="488.1" y2="72.7" stroke="#0CA8A2" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:301ms"/><line x1="586.9" y1="155.4" x2="611.6" y2="119.8" stroke="#F25442" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:309ms"/><line x1="612.9" y1="175.6" x2="637.2" y2="147.6" stroke="#2AB4C6" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:313ms"/><line x1="684.0" y1="265.0" x2="721.3" y2="245.2" stroke="#5AB432" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:321ms"/><line x1="702.8" y1="308.2" x2="737.7" y2="296.1" stroke="#0CA8A2" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:325ms"/><line x1="715.4" y1="357.1" x2="761.1" y2="349.1" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:329ms"/><line x1="720.0" y1="408.9" x2="767.5" y2="408.8" stroke="#2AB4C6" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:333ms"/><line x1="715.5" y1="462.5" x2="751.2" y2="468.7" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:337ms"/><line x1="710.2" y1="487.2" x2="745.5" y2="496.3" stroke="#5AB432" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:341ms"/><line x1="688.6" y1="546.0" x2="727.9" y2="565.2" stroke="#2AB4C6" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:345ms"/><line x1="584.3" y1="666.3" x2="604.8" y2="696.3" stroke="#0CA8A2" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:357ms"/><line x1="564.0" y1="679.0" x2="583.2" y2="712.5" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:361ms"/><line x1="403.9" y1="719.9" x2="402.9" y2="766.8" stroke="#0C3654" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:373ms"/><line x1="359.3" y1="715.8" x2="351.8" y2="760.9" stroke="#0CA8A2" stroke-width="8.5" stroke-linecap="round" opacity="0.50" style="animation-delay:377ms"/><line x1="142.6" y1="648.0" x2="105.9" y2="680.7" stroke="#2AB4C6" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:274ms"/><line x1="116.5" y1="615.1" x2="83.6" y2="638.1" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:278ms"/><line x1="87.9" y1="566.2" x2="50.6" y2="584.3" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:282ms"/><line x1="67.2" y1="513.2" x2="22.0" y2="526.8" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:286ms"/><line x1="57.0" y1="469.7" x2="3.9" y2="478.7" stroke="#0CA8A2" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:290ms"/><line x1="52.4" y1="427.1" x2="-0.6" y2="429.6" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:294ms"/><line x1="64.4" y1="316.5" x2="12.4" y2="302.4" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:302ms"/><line x1="77.7" y1="276.7" x2="37.9" y2="260.7" stroke="#0CA8A2" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:306ms"/><line x1="98.3" y1="233.9" x2="60.3" y2="212.5" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:310ms"/><line x1="127.3" y1="190.3" x2="90.1" y2="161.4" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:314ms"/><line x1="220.1" y1="106.5" x2="198.7" y2="72.3" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:322ms"/><line x1="266.7" y1="81.9" x2="248.4" y2="40.1" stroke="#2AB4C6" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:326ms"/><line x1="291.2" y1="72.3" x2="276.4" y2="30.4" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:330ms"/><line x1="336.3" y1="59.7" x2="325.6" y2="9.0" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:334ms"/><line x1="438.3" y1="53.1" x2="441.7" y2="9.7" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:342ms"/><line x1="500.1" y1="63.5" x2="512.3" y2="16.8" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:346ms"/><line x1="563.4" y1="86.5" x2="585.7" y2="39.6" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:350ms"/><line x1="586.4" y1="98.5" x2="608.0" y2="60.2" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:354ms"/><line x1="704.7" y1="206.7" x2="747.8" y2="176.9" stroke="#F25442" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:366ms"/><line x1="735.7" y1="261.4" x2="783.3" y2="239.7" stroke="#0CA8A2" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:370ms"/><line x1="751.7" y1="303.1" x2="790.5" y2="290.9" stroke="#2AB4C6" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:374ms"/><line x1="762.7" y1="348.6" x2="804.0" y2="341.4" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:378ms"/><line x1="767.9" y1="401.7" x2="815.6" y2="400.6" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:382ms"/><line x1="765.5" y1="452.3" x2="809.4" y2="457.5" stroke="#2AB4C6" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:386ms"/><line x1="753.6" y1="510.3" x2="797.5" y2="523.2" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:390ms"/><line x1="741.2" y1="545.9" x2="783.3" y2="563.2" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:394ms"/><line x1="685.6" y1="638.5" x2="722.4" y2="668.9" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:402ms"/><line x1="640.9" y1="683.5" x2="670.8" y2="718.9" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:406ms"/><line x1="574.8" y1="727.8" x2="595.2" y2="767.3" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:414ms"/><line x1="525.4" y1="748.9" x2="542.3" y2="798.5" stroke="#2AB4C6" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:418ms"/><line x1="457.5" y1="764.8" x2="464.2" y2="814.8" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:422ms"/><line x1="421.6" y1="767.8" x2="423.0" y2="808.7" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:426ms"/><line x1="364.6" y1="765.1" x2="358.3" y2="814.3" stroke="#0CA8A2" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:430ms"/><line x1="312.9" y1="754.6" x2="301.2" y2="796.0" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:434ms"/><line x1="257.4" y1="733.8" x2="236.5" y2="778.2" stroke="#5AB432" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:438ms"/><line x1="211.4" y1="707.8" x2="182.4" y2="751.3" stroke="#0C3654" stroke-width="9.4" stroke-linecap="round" opacity="0.40" style="animation-delay:442ms"/></svg>
     <div class="wrap">
-      <div>
-        <div class="latest" id="latest">
-          <h1>Caravan drain-downs now booking</h1>
-          <p class="say">Get your caravan or lodge drained down before the first hard frost. Drained, blown through, tagged and logged.</p>
-          <div class="row"><a class="btn go" href="#book" data-svc="Winter drain-down">Book a drain-down <svg><use href="#i-arrow"/></svg></a><a class="btn" href="tel:+447568308119"><svg><use href="#i-phone"/></svg>07568 308 119</a></div>
-          <a class="watch" id="watch" href="#drain-downs" data-film="drain"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Watch the drain-down video</a>
-          <p class="where"><b>Plumbing and heating engineers</b> in Hunstanton and North Norfolk. Gas Safe registered 973245. Homes, landlords, holiday lets, caravans and parks.</p>
+      <div class="latest" id="latest">
+          <h1 data-r>Caravan <span class="nw">drain-downs</span> now booking</h1>
+          <p class="say" data-r style="--i:1">Get your caravan or lodge drained down before the first hard frost. Drained, blown through, tagged and logged.</p>
+          <div class="row" data-r style="--i:2"><a class="btn go" href="#book" data-svc="Winter drain-down">Book a drain-down <svg><use href="#i-arrow"/></svg></a><a class="btn" href="tel:+447568308119"><svg><use href="#i-phone"/></svg>07568 308 119</a></div>
+          <a class="watch" data-r style="--i:3" id="watch" href="#drain-downs" data-film="drain"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Watch the drain-down video</a>
+          <p class="where" data-r style="--i:4"><b>Plumbing and heating engineers</b> in Hunstanton and North Norfolk. Gas Safe registered 973245. Homes, landlords, holiday lets, caravans and parks.</p>
         </div>
-      </div>
+
+      <figure class="hfilm" id="hfilm" data-r style="--i:2">
+        <div class="film"><canvas role="img"></canvas><div class="ctl"><button type="button" class="pp" aria-label="Pause film"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></button></div></div>
+        <ol class="steps" aria-label="Chapters"></ol>
+      </figure>
+    </div>
+  </div>
+  <div class="askwrap"><div class="wrap">
       <div class="ask" id="ask">
         <h2 id="askH">What do you need?</h2>
         <div class="opts" role="group" aria-labelledby="askH">
@@ -334,8 +388,7 @@ footer .emerg b{color:#fff}
         </div>
         <div class="ans" id="ans" aria-live="polite"></div>
       </div>
-    </div>
-  </div>
+  </div></div>
 
   <div class="proof">
     <ul class="wrap" aria-label="Credentials">
@@ -350,20 +403,25 @@ footer .emerg b{color:#fff}
     <div class="wrap">
       <div class="sec-head">
         <h2>Services &amp; prices</h2>
-        <p class="lead">Fixed prices where we can give them. Everything else is quoted before any work starts.</p>
+        <p class="lead">Fixed prices for the most common jobs. Book and pay online.</p>
       </div>
       <div class="board">
         <div class="r hi"><h3>Gas safety certificate (CP12)</h3><p>Every gas appliance inspected and tested. Certificate emailed the same day.</p><div class="pr">£80</div><a class="btn go" href="https://buy.stripe.com/4gMeVf2Xi5UE2F3b5s2Ry02" target="_blank" rel="noopener">Book &amp; pay <svg><use href="#i-arrow"/></svg></a></div>
         <div class="r hi"><h3>Boiler service + CP12</h3><p>Full boiler service and your gas safety certificate in one visit.</p><div class="pr">£90<small><s>£170 separately</s></small></div><a class="btn go" href="https://buy.stripe.com/00wdRb8hC1EocfDc9w2Ry01" target="_blank" rel="noopener">Book &amp; pay <svg><use href="#i-arrow"/></svg></a></div>
         <div class="r"><h3>New boiler</h3><p>Supplied, fitted, commissioned and certified. Spread the cost over 12 to 60 months.</p><div class="pr">from £29<small>a month. Rates from 9.9% APR, subject to status.</small></div><a class="btn" href="tel:+447568308119"><svg><use href="#i-phone"/></svg>Free quote</a></div>
-        <div class="r"><h3>Boiler repairs</h3><p>Breakdowns, lockouts and error codes on all major brands. Genuine parts.</p><div class="pr q">Quoted first</div><a class="btn" href="#book" data-svc="Boiler repair">Book <svg><use href="#i-arrow"/></svg></a></div>
-        <div class="r"><h3>Heating faults</h3><p>Controls, thermostats, pressure and flow. Faults found and explained.</p><div class="pr q">Quoted first</div><a class="btn" href="#book" data-svc="Heating fault">Book <svg><use href="#i-arrow"/></svg></a></div>
-        <div class="r"><h3>Plumbing repairs</h3><p>Leaks, pipework, radiators and valves.</p><div class="pr q">Quoted first</div><a class="btn" href="#book" data-svc="Plumbing repair">Book <svg><use href="#i-arrow"/></svg></a></div>
-        <div class="r"><h3>Air conditioning</h3><p>Installed, commissioned and serviced. Refcom F-Gas registered.</p><div class="pr q">Quoted first</div><a class="btn" href="#book" data-svc="Air conditioning">Book <svg><use href="#i-arrow"/></svg></a></div>
-        <div class="r"><h3>Electrical safety &amp; repairs</h3><p>Safety checks, fault finding, sockets and lighting.</p><div class="pr q">Quoted first</div><a class="btn" href="#book" data-svc="Electrical">Book <svg><use href="#i-arrow"/></svg></a></div>
-        <div class="r"><h3>Emergency call-outs</h3><p>No heating or hot water. Same day, subject to availability.</p><div class="pr q">Call now</div><a class="btn dark" href="tel:+447568308119"><svg><use href="#i-phone"/></svg>07568 308 119</a></div>
+        <div class="r"><h3>24-hour emergency call-outs</h3><p>No heating, no hot water, or a leak. Day or night.</p><div class="pr q">Call any time</div><a class="btn dark" href="tel:+447568308119"><svg><use href="#i-phone"/></svg>07568 308 119</a></div>
       </div>
-      <div class="notes"><span>Secure payment by Stripe.</span><span>Date confirmed within 24 hours of booking.</span><span>Monday to Friday. Emergencies subject to availability.</span></div>
+      <div class="jobs">
+        <div class="jobs-head"><h3>Repairs and other work</h3><p>Every job is priced before any work starts. Tap one to book.</p></div>
+        <ul>
+          <li><a href="#book" data-svc="Boiler repair"><b>Boiler repairs</b><span>Breakdowns, lockouts and error codes on all major brands. Genuine parts.</span><svg><use href="#i-arrow"/></svg></a></li>
+          <li><a href="#book" data-svc="Heating fault"><b>Heating faults</b><span>Controls, thermostats, pressure and flow. Faults found and explained.</span><svg><use href="#i-arrow"/></svg></a></li>
+          <li><a href="#book" data-svc="Plumbing repair"><b>Plumbing repairs</b><span>Leaks, pipework, radiators and valves.</span><svg><use href="#i-arrow"/></svg></a></li>
+          <li><a href="#book" data-svc="Air conditioning"><b>Air conditioning</b><span>Installed, commissioned and serviced. Refcom F-Gas registered.</span><svg><use href="#i-arrow"/></svg></a></li>
+          <li><a href="#book" data-svc="Electrical"><b>Electrical safety &amp; repairs</b><span>Safety checks, fault finding, sockets and lighting.</span><svg><use href="#i-arrow"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="notes"><span>Secure payment by Stripe.</span><span>Date confirmed within 24 hours of booking.</span><span>Monday to Friday, with 24-hour emergency call-outs.</span></div>
     </div>
   </section>
 
@@ -389,10 +447,13 @@ footer .emerg b{color:#fff}
             <button role="tab" aria-selected="false" data-film="freeze">Frozen pipe</button>
             <button role="tab" aria-selected="false" data-film="pipe">Gas supply</button>
           </div>
-          <div class="film" id="film">
-            <canvas role="img" aria-label="Animated film: how a static caravan is drained down for winter"></canvas>
-            <div class="ctl"><button type="button" id="filmBtn" aria-label="Pause film"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></button><div class="bar"><i id="filmBar"></i></div></div>
-          </div>
+          <figure class="hfilm" id="cfilm" style="margin:0">
+            <div class="film">
+              <canvas role="img"></canvas>
+              <div class="ctl"><button type="button" class="pp" aria-label="Pause film"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></button></div>
+            </div>
+            <ol class="steps" aria-label="Chapters"></ol>
+          </figure>
         </div>
       </div>
       <div class="parks">
@@ -404,7 +465,7 @@ footer .emerg b{color:#fff}
         <ul>
           <li><b>Bulk CP12 certificates</b><span>Every unit inspected. Paperwork ready for insurers and the council.</span></li>
           <li><b>Lodge boiler servicing</b><span>Annual and reactive. LPG and mains gas.</span></li>
-          <li><b>Emergency response</b><span>Fast response for occupied units.</span></li>
+          <li><b>Emergency response</b><span>24-hour call-outs for occupied units.</span></li>
           <li><b>Annual contracts</b><span>Fixed costs and priority response.</span></li>
           <li><b>Compliance reports</b><span>Insurance-ready and council-ready.</span></li>
           <li><b>Remedial works</b><span>Repairs after inspections, documented.</span></li>
@@ -487,7 +548,7 @@ footer .emerg b{color:#fff}
           <li><small>Phone or text</small><a href="tel:+447568308119">07568 308 119</a></li>
           <li><small>WhatsApp</small><a href="https://wa.me/447568308119">Message on WhatsApp</a></li>
           <li><small>Email</small><a href="mailto:lee@vortexcarbon.co.uk">lee@vortexcarbon.co.uk</a></li>
-          <li><small>Hours</small>Monday to Friday. Emergencies subject to availability.</li>
+          <li><small>Hours</small>Monday to Friday. Emergency call-outs 24 hours a day.</li>
         </ul>
       </div>
       <form id="form" novalidate>
@@ -533,7 +594,7 @@ footer .emerg b{color:#fff}
     <div><span class="lg"><img alt="Vortex Carbon" width="118" height="52" data-logo></span><p style="margin-top:16px">Vortex Carbon Ltd<br>Gas Safe 973245<br>Lee Chapman TMIET</p></div>
     <div><h4>Services</h4><ul><li><a href="#services">Services &amp; prices</a></li><li><a href="#caravans">Caravans &amp; parks</a></li><li><a href="#cover">Holiday home cover</a></li><li><a href="#book">Book</a></li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="tel:+447568308119">07568 308 119</a></li><li><a href="mailto:lee@vortexcarbon.co.uk">lee@vortexcarbon.co.uk</a></li><li><a href="https://wa.me/447568308119">WhatsApp</a></li><li><a href="https://www.facebook.com/profile.php?id=61589798134793">Facebook</a></li></ul></div>
-    <div><h4>Hours</h4><p>Monday to Friday.<br>Emergencies subject to availability.</p></div>
+    <div><h4>Hours</h4><p>Monday to Friday.<br>24-hour emergency call-outs.</p></div>
     <p class="emerg"><b>Smell gas?</b> Leave the property and call the National Gas Emergency Service on <b>0800 111 999</b>.</p>
   </div>
 </footer>
@@ -858,17 +919,29 @@ const Films = (() => {
     const pipes = [
       [[.9, .88], [.9, .8], [.1, .8]],
       [[.36, .8], [.36, .69]], [[.43, .8], [.43, .69]], [[.53, .8], [.53, .6]], [[.76, .8], [.76, .61]],
-      [[.51, .6], [.51, .765], [.17, .765], [.17, .67]], [[.55, .6], [.55, .765], [.885, .765], [.885, .67]],
       [[.12, .8], [.12, .83]], [[.62, .8], [.62, .83]]
     ];
+    // sealed heating circuit: boiler to radiators. It is not drained, so it is always drawn full.
+    const heat = [[[.51, .6], [.51, .765], [.17, .765], [.17, .67]], [[.55, .6], [.55, .765], [.885, .765], [.885, .67]]];
     const boxes = [
       { r: [.49, .47, .08, .13], k: 'boiler' }, { r: [.1, .62, .14, .05], k: 'rad' }, { r: [.84, .62, .09, .05], k: 'rad' },
       { r: [.7, .58, .12, .03], k: 'sink' }, { r: [.32, .665, .08, .025], k: 'tray' }, { r: [.41, .63, .04, .06], k: 'wc' }
     ];
+    const HEAT = '#F2A33A';
+    function heating() {
+      ctx.lineWidth = .8 * u; ctx.strokeStyle = HEAT;
+      heat.forEach(p => { ctx.beginPath(); p.forEach((q, i) => ctx[i ? 'lineTo' : 'moveTo'](...P(...q))); ctx.stroke(); });
+      boxes.filter(b => b.k === 'rad').forEach(b => {
+        const [x, y, bw, bh] = b.r, [X, Y] = P(x, y);
+        ctx.fillStyle = 'rgba(242,163,58,.85)'; ctx.strokeStyle = '#FFC778'; ctx.lineWidth = .35 * u;
+        roundRect(ctx, X, Y, bw * S, bh * S, .6 * u); ctx.fill(); ctx.stroke();
+        ctx.strokeStyle = 'rgba(255,230,190,.55)'; ctx.lineWidth = .22 * u; for (let i = 1; i < 7; i++) { ctx.beginPath(); ctx.moveTo(X + bw * S * i / 7, Y + .6 * u); ctx.lineTo(X + bw * S * i / 7, Y + bh * S - .6 * u); ctx.stroke(); }
+      });
+    }
     function plumbing(full) {
       ctx.lineWidth = .8 * u; ctx.strokeStyle = full ? rgb(C.water, 1.25) : 'rgba(150,170,190,.45)';
       pipes.forEach(p => { ctx.beginPath(); p.forEach((q, i) => ctx[i ? 'lineTo' : 'moveTo'](...P(...q))); ctx.stroke(); });
-      boxes.forEach(b => {
+      boxes.filter(b => b.k !== 'rad').forEach(b => {
         const [x, y, bw, bh] = b.r, [X, Y] = P(x, y);
         ctx.fillStyle = full ? rgb(C.water, .95) : 'rgba(17,27,38,1)'; ctx.strokeStyle = full ? rgb(C.water, 1.3) : 'rgba(150,170,190,.55)'; ctx.lineWidth = .35 * u;
         roundRect(ctx, X, Y, bw * S, bh * S, b.k === 'wc' ? 1.2 * u : .6 * u); ctx.fill(); ctx.stroke();
@@ -877,10 +950,12 @@ const Films = (() => {
     }
     plumbing(false);
     ctx.save(); const [, Ly] = P(0, L); ctx.beginPath(); ctx.rect(0, Ly, w, h); ctx.clip(); plumbing(true); ctx.restore();
+    heating();
     if (t > 2.9 && t < 7.8) { ctx.strokeStyle = 'rgba(120,190,255,.35)'; ctx.setLineDash([.8 * u, .8 * u]); ctx.lineWidth = .22 * u; ctx.beginPath(); ctx.moveTo(...P(.04, L)); ctx.lineTo(...P(.96, L)); ctx.stroke(); ctx.setLineDash([]); }
     // labels
     ctx.font = `500 ${1.5 * u}px ${F.mono}`; ctx.fillStyle = C.ink; ctx.textBaseline = 'bottom';
     ctx.fillText('COMBI BOILER', ...P(.49, .465)); ctx.fillText('SINK', ...P(.7, .575));
+    ctx.fillStyle = '#FFC778'; ctx.fillText('RADIATOR · STAYS FULL', ...P(.1, .615));
     ctx.textBaseline = 'top'; ctx.fillStyle = C.mute; ctx.fillText('DRAIN POINTS', ...P(.14, .835)); ctx.fillText('WATER SUPPLY', ...P(.915, .815));
     // stopcock on the park supply
     const sc = ease(seg(t, 1.1, 1.9)); const [sx, sy] = P(.9, .85);
@@ -913,7 +988,7 @@ const Films = (() => {
       ctx.restore();
     }
     caption(ctx, w, h, t, .25, 2.8, 'Park closed. Hard frost.', 'Heating off · water still in every pipe');
-    caption(ctx, w, h, t, 3, 6.2, 'Drain it down', 'Supply off · drain points under the chassis open');
+    caption(ctx, w, h, t, 3, 6.2, 'Drain it down', 'Water system only · radiators stay full');
     caption(ctx, w, h, t, 6.4, 9.5, 'Blow the lines', 'Air through every pipe · antifreeze in the traps');
     caption(ctx, w, h, t, 9.7, 12.2, 'Frost-protected until spring', 'Boiler isolated · caravan tagged and logged');
   }
@@ -938,17 +1013,17 @@ const Films = (() => {
 
   /* seasonal panel at the top: changes by month. To change the wording, edit SEASONS. */
   const SEASONS = {
-    drain:  { months: [10, 11, 12], h: 'Caravan drain-downs now booking', p: 'Get your caravan or lodge drained down before the first hard frost. Drained, blown through, tagged and logged.', go: ['#book', 'Book a drain-down', 'Winter drain-down'] },
-    frost:  { months: [1], h: 'Frozen or burst pipe?', p: 'Splits under caravans, lodges and homes found and replaced. Call for the quickest response.', go: ['#book', 'Book a repair', 'Frozen or burst pipe'] },
-    spring: { months: [2, 3, 4], h: 'Spring refills now booking', p: 'Water back on, leaks checked and heating recommissioned before the season starts.', go: ['#book', 'Book a refill', 'Spring refill'] },
-    cp12:   { months: [5, 6, 7, 8], h: 'Gas safety certificates £80', p: 'Every gas appliance inspected and tested. Certificate emailed the same day.', go: ['https://buy.stripe.com/4gMeVf2Xi5UE2F3b5s2Ry02', 'Book & pay £80'] },
-    service:{ months: [9], h: 'Boiler service + CP12 £90', p: 'Get your boiler serviced before winter, with your gas safety certificate in the same visit.', go: ['https://buy.stripe.com/00wdRb8hC1EocfDc9w2Ry01', 'Book & pay £90'] }
+    drain:  { film: 'drain', months: [10, 11, 12], h: 'Caravan drain-downs now booking', p: 'Get your caravan or lodge drained down before the first hard frost. Drained, blown through, tagged and logged.', go: ['#book', 'Book a drain-down', 'Winter drain-down'] },
+    frost:  { film: 'freeze', months: [1], h: 'Frozen or burst pipe?', p: 'Splits under caravans, lodges and homes found and replaced. Call for the quickest response.', go: ['#book', 'Book a repair', 'Frozen or burst pipe'] },
+    spring: { film: 'drain', months: [2, 3, 4], h: 'Spring refills now booking', p: 'Water back on, leaks checked and heating recommissioned before the season starts.', go: ['#book', 'Book a refill', 'Spring refill'] },
+    cp12:   { film: 'pipe', months: [5, 6, 7, 8], h: 'Gas safety certificates £80', p: 'Every gas appliance inspected and tested. Certificate emailed the same day.', go: ['https://buy.stripe.com/4gMeVf2Xi5UE2F3b5s2Ry02', 'Book & pay £80'] },
+    service:{ film: 'pipe', months: [9], h: 'Boiler service + CP12 £90', p: 'Get your boiler serviced before winter, with your gas safety certificate in the same visit.', go: ['https://buy.stripe.com/00wdRb8hC1EocfDc9w2Ry01', 'Book & pay £90'] }
   };
   const month = new Date().getMonth() + 1;
   const season = Object.values(SEASONS).find(x => x.months.includes(month));
   if (season && season !== SEASONS.drain) {
     const L = $('#latest'), [href, label, svc] = season.go, ext = href.startsWith('http');
-    L.querySelector('h1').textContent = season.h; L.querySelector('.say').textContent = season.p;
+    L.querySelector('h1').innerHTML = season.h.replace(/(\S+-\S+)/g, '<span class="nw">$1</span>'); L.querySelector('.say').textContent = season.p;
     const b = L.querySelector('.btn.go'); b.href = href; b.firstChild.textContent = label + ' ';
     if (svc) b.dataset.svc = svc; else delete b.dataset.svc;
     if (ext) { b.target = '_blank'; b.rel = 'noopener'; }
@@ -960,11 +1035,11 @@ const Films = (() => {
   const book = svc => `<a class="btn" href="#book" data-svc="${svc}">Book online <svg><use href="#i-arrow"/></svg></a>`;
   const pay = (url, label) => `<a class="btn go" href="${url}" target="_blank" rel="noopener">${label} <svg><use href="#i-arrow"/></svg></a>`;
   const A = {
-    noheat: `<p class="price">Same day<small>subject to availability</small></p><p>Breakdowns and lockouts on all major boiler brands. Call now for the quickest response.</p><div class="row">${tel}${book('Boiler repair')}</div>`,
+    noheat: `<p class="price">24 hours<small>emergency call-outs</small></p><p>Breakdowns and lockouts on all major boiler brands, day or night. Call now for the quickest response.</p><div class="row">${tel}${book('Boiler repair')}</div>`,
     service: `<p class="price">£90<small>service + CP12</small></p><p>Full boiler service and your gas safety certificate in one visit. £170 if booked separately.</p><div class="row">${pay('https://buy.stripe.com/00wdRb8hC1EocfDc9w2Ry01', 'Book &amp; pay £90')}</div>`,
     cp12: `<p class="price">£80</p><p>Every gas appliance inspected and tested. Certificate emailed the same day.</p><div class="row">${pay('https://buy.stripe.com/4gMeVf2Xi5UE2F3b5s2Ry02', 'Book &amp; pay £80')}</div>`,
     boiler: `<p class="price">from £29<small>a month</small></p><p>Supplied, fitted and certified. Spread over 12 to 60 months, rates from 9.9% APR, subject to status.</p><div class="row">${tel}${book('New boiler quote')}</div>`,
-    leak: `<p class="price">Quoted first</p><p>Leaks, pipework, radiators and valves. You get the price before any work starts.</p><div class="row">${book('Plumbing repair')}${tel}</div>`,
+    leak: `<p class="price">Priced up front</p><p>Leaks, pipework, radiators and valves. You get the price before any work starts.</p><div class="row">${book('Plumbing repair')}${tel}</div>`,
     caravan: `<p class="price">Caravans &amp; parks</p><p>LPG safety, boilers, drain-downs, spring refills and park contracts.</p><div class="row"><a class="btn go" href="#caravans">See caravan services <svg><use href="#i-arrow"/></svg></a></div>`
   };
   const ans = $('#ans');
@@ -984,26 +1059,57 @@ const Films = (() => {
     if (o) sel.value = o.text;
   });
 
-  /* film */
-  const fe = $('#film'), cv = fe.querySelector('canvas'), ctx = cv.getContext('2d');
+  /* films: one player per figure, with chapter steps that fill as the film plays and can be tapped */
   const labels = { drain: 'how a static caravan is drained down for winter', freeze: 'how ice splits a caravan water pipe', pipe: 'gas from the LPG tank to the boiler flame' };
-  let film = Films.list.find(f => f.id === 'drain'), t = reduce ? 9.9 : 0, playing = !reduce, vis = false, last = 0, raf = 0;
-  if (reduce) fe.classList.add('paused');
-  function size() { const r = cv.getBoundingClientRect(); if (!r.width) return; const d = Math.min(devicePixelRatio || 1, 2); cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); draw(); }
-  function draw() { if (!cv.width) return; Films_Q.cap = true; film.draw(ctx, cv.width, cv.height, t); $('#filmBar').style.transform = `scaleX(${t / film.dur})`; }
-  function tick(now) { const dt = Math.min(.05, (now - last) / 1000); last = now; t = (t + dt) % film.dur; draw(); if (playing && vis) raf = requestAnimationFrame(tick); else raf = 0; }
-  function run() { if (playing && vis && !raf) { last = performance.now(); raf = requestAnimationFrame(tick); } }
-  new ResizeObserver(size).observe(fe);
-  new IntersectionObserver(es => { vis = es[0].isIntersecting; run(); }, { threshold: .25 }).observe(fe);
-  $('#filmBtn').addEventListener('click', () => { playing = !playing; fe.classList.toggle('paused', !playing); $('#filmBtn').setAttribute('aria-label', playing ? 'Pause film' : 'Play film'); run(); });
-  function showFilm(b) {
-    $$('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
-    film = Films.list.find(f => f.id === b.dataset.film); t = reduce ? film.chapters[film.chapters.length - 1][0] + .5 : 0;
-    cv.setAttribute('aria-label', 'Animated film: ' + labels[film.id]); draw(); run();
+  function player(root) {
+    const fe = root.querySelector('.film'), cv = root.querySelector('canvas'), ctx = cv.getContext('2d'), btn = root.querySelector('.pp'), ol = root.querySelector('.steps');
+    let film, t = 0, playing = !reduce, vis = false, last = 0, raf = 0, cur = -1, bars = [], steps = [];
+    if (reduce) fe.classList.add('paused');
+    function draw() {
+      if (!cv.width || !film) return;
+      Films_Q.cap = true; film.draw(ctx, cv.width, cv.height, t);
+      const ch = film.chapters; let k = 0; while (k + 1 < ch.length && t >= ch[k + 1][0]) k++;
+      if (k !== cur) { cur = k; steps.forEach((b, i) => { b.toggleAttribute('data-on', i === k); if (i === k) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); }); }
+      const end = k + 1 < ch.length ? ch[k + 1][0] : film.dur;
+      bars.forEach((b, i) => { b.style.transform = `scaleX(${i < k ? 1 : i > k ? 0 : Math.min(1, (t - ch[k][0]) / (end - ch[k][0]))})`; });
+    }
+    function tick(now) { const dt = Math.min(.05, (now - last) / 1000); last = now; t = (t + dt) % film.dur; draw(); raf = playing && vis ? requestAnimationFrame(tick) : 0; }
+    function run() { if (playing && vis && !raf) { last = performance.now(); raf = requestAnimationFrame(tick); } }
+    function size() { const r = cv.getBoundingClientRect(); if (!r.width) return; const d = Math.min(devicePixelRatio || 1, 2); cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); draw(); }
+    function set(id) {
+      film = Films.list.find(f => f.id === id); t = reduce ? film.chapters[film.chapters.length - 1][0] + .5 : 0; cur = -1;
+      cv.setAttribute('aria-label', 'Animated film: ' + labels[id]);
+      ol.innerHTML = film.chapters.map(([, n], i) => `<li><button type="button" data-i="${i}"><i><b></b></i><span>${n}</span></button></li>`).join('');
+      steps = [...ol.querySelectorAll('button')]; bars = [...ol.querySelectorAll('b')]; draw(); run();
+    }
+    ol.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; t = film.chapters[+b.dataset.i][0] + .01; draw(); run(); });
+    btn.addEventListener('click', () => { playing = !playing; fe.classList.toggle('paused', !playing); btn.setAttribute('aria-label', playing ? 'Pause film' : 'Play film'); run(); });
+    new ResizeObserver(size).observe(fe);
+    new IntersectionObserver(es => { vis = es[0].isIntersecting; run(); }, { threshold: .2 }).observe(fe);
+    if (document.fonts) document.fonts.ready.then(draw);
+    return { set };
   }
+  const hero = player($('#hfilm')), car = player($('#cfilm'));
+  function showFilm(b) { $$('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b)); car.set(b.dataset.film); }
+  const heroFilm = season ? season.film : 'drain';
+  hero.set(heroFilm);
+  showFilm($(`.tabs button[data-film="${heroFilm === 'drain' ? 'freeze' : 'drain'}"]`));
   $$('.tabs button').forEach(b => b.addEventListener('click', () => showFilm(b)));
   $$('a[data-film]').forEach(a => a.addEventListener('click', () => showFilm($(`.tabs button[data-film="${a.dataset.film}"]`))));
-  if (document.fonts) document.fonts.ready.then(draw);
+
+  /* reveal on scroll, staggered within each group */
+  const groups = ['.sec-head', '.board', '.jobs ul', '.cv-list', '.parks ul', '.cover tbody', '.quotes', '.towns', '.creds', '.proof ul', '.contact-list'];
+  groups.forEach(g => $$(g).forEach(el => [...el.children].forEach((c, i) => { c.setAttribute('data-r', ''); c.style.setProperty('--i', Math.min(i, 8)); })));
+  $$('.addon, .map, .score, #form, .cv .tabs, #cfilm, .parks > div:first-child, .cover thead').forEach(el => el.setAttribute('data-r', ''));
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    $$('[data-r]').forEach(el => io.observe(el));
+  } else $$('[data-r]').forEach(el => el.classList.add('in'));
+
+  /* header tightens once the page scrolls */
+  const top = $('.top'); let ticking = false;
+  addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { top.classList.toggle('scrolled', scrollY > 8); ticking = false; }); }, { passive: true });
+
 
   /* booking */
   const form = $('#form');
