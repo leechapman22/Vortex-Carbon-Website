@@ -234,6 +234,16 @@ section{padding-block:clamp(64px,9vw,128px)}
 .cover td.y svg{width:22px;height:22px;margin:0 auto;color:var(--green-ink)}
 .cover td.n{text-align:center;color:var(--mute)}
 .cover .pick{background:rgba(90,180,50,.10)}
+.cover thead th i{display:block;font-style:normal;font-weight:850;font-stretch:112%;font-size:26px;color:var(--navy);letter-spacing:-.02em;line-height:1.1;margin-top:8px;white-space:nowrap}
+.cover thead th i small{font-size:13.5px;font-weight:500;font-stretch:100%;color:var(--mute);letter-spacing:0}
+.cover td.v{text-align:center;font-weight:700;color:var(--navy)}
+.cv-prices{margin-top:26px}
+.cv-prices h3{color:#fff;font-size:18px;margin-bottom:12px}
+.cv-prices ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cv-prices li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:13px 16px;border:1px solid rgba(255,255,255,.22);border-radius:8px;color:#C3D2DE;font-size:16px}
+.cv-prices li b{color:#fff;font-weight:850;font-stretch:112%;font-size:22px;letter-spacing:-.02em}
+@media (max-width:560px){ .cv-prices ul{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){ .cover thead th i{font-size:21px} .cover thead th i small{display:block;font-size:12.5px} }
 .cover tfoot td{border-bottom:0;padding-top:20px}
 .addon{margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center;padding:22px 24px;border:2px solid var(--line);border-radius:10px}
 .addon p{color:var(--mute)}
@@ -439,6 +449,15 @@ footer .emerg b{color:#fff}
             <li><b>Spring refill</b><span>Water back on, leaks checked, heating recommissioned.</span></li>
             <li><b>Frozen &amp; burst pipes</b><span>Splits under the floor found and replaced. Exposed pipes lagged.</span></li>
           </ul>
+          <div class="cv-prices">
+            <h3>Caravan &amp; lodge prices</h3>
+            <ul>
+              <li><span>Gas test and service</span><b>£80</b></li>
+              <li><span>Winter drain-down</span><b>£70</b></li>
+              <li><span>Pre-season check</span><b>£60</b></li>
+              <li><span>Call-out</span><b>£85</b></li>
+            </ul>
+          </div>
         </div>
         <div>
           <div id="drain-downs"></div>
@@ -478,17 +497,18 @@ footer .emerg b{color:#fff}
     <div class="wrap">
       <div class="sec-head">
         <h2>Holiday home cover</h2>
-        <p class="lead">For holiday homes, lodges and caravans when you live elsewhere. Call to arrange.</p>
+        <p class="lead">For holiday homes, lodges and caravans when you live elsewhere. One price for the year. Call to arrange.</p>
       </div>
       <table class="cover">
-        <thead><tr><th scope="col"><span class="sr">What's included</span></th><th scope="col" class="c"><b>Home Safe</b><span>Essential</span></th><th scope="col" class="c pick"><b>Home Guard</b><span>Most popular</span></th></tr></thead>
+        <thead><tr><th scope="col"><span class="sr">What's included</span></th><th scope="col" class="c"><b>Home Safe</b><span>Essential</span><i>£130<small> a year</small></i></th><th scope="col" class="c pick"><b>Home Guard</b><span>Most popular</span><i>£195<small> a year</small></i></th></tr></thead>
         <tbody>
           <tr><th scope="row">Annual CP12 certificate, all appliances</th><td class="y"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
           <tr><th scope="row">Full boiler service</th><td class="y"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
           <tr><th scope="row">Pre-season check before letting</th><td class="y"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
           <tr><th scope="row">Written report after every visit</th><td class="y"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
           <tr><th scope="row">Priority emergency call-out</th><td class="n">No</td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
-          <tr><th scope="row">End-of-season winterising and shutdown</th><td class="n">No</td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
+          <tr><th scope="row">End-of-season drain-down and shutdown</th><td class="n">No</td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
+          <tr><th scope="row">Call-out charge</th><td class="v">£85</td><td class="v pick">£72</td></tr>
           <tr><th scope="row">Letting agent liaison</th><td class="n">No</td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
           <tr><th scope="row">Key holder access</th><td class="n">No</td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
           <tr><th scope="row">Photos with every report</th><td class="n">No</td><td class="y pick"><svg role="img" aria-label="Included"><use href="#i-tick"/></svg></td></tr>
