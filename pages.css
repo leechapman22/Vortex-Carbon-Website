@@ -45,6 +45,10 @@ section.alt{background:var(--paper-2)}
 .faq p{color:var(--text)}
 .towns{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .towns li{padding:7px 13px;border:1px solid var(--line);border-radius:999px;font-size:15px;background:#fff}
+.parks{list-style:none;margin:8px 0 0;padding:0;border-top:2px solid var(--navy)}
+.parks li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.parks b{color:var(--navy);font-weight:700}
+.parks span{color:var(--mute);white-space:nowrap}
 .more{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
 .more a{font-weight:650;color:var(--navy)}
 .cta{background:var(--navy);color:#DCE6EE;border-bottom:0}
