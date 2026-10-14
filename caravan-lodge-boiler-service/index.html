@@ -52,5 +52,15 @@
   <p class="emerg"><b>Smell gas?</b> Leave the property and call the National Gas Emergency Service on <b>0800 111 999</b>.</p>
 </div></footer>
 <nav class="bar-m" aria-label="Quick contact"><a class="btn" href="tel:+447568308119">Call</a><a class="btn" href="https://wa.me/447568308119">WhatsApp</a><a class="btn go" href="/#book">Book</a></nav>
+<!-- Visit counter (GoatCounter: no cookies, no personal data). Numbers at vortexcarbon.goatcounter.com -->
+<script data-goatcounter="https://vortexcarbon.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+document.addEventListener('click', e => {
+  const a = e.target.closest('a'); if (!a || !window.goatcounter || !goatcounter.count) return;
+  const h = a.getAttribute('href') || '';
+  const n = h === '#book' ? 'Book tapped' : h.startsWith('tel:') ? 'Call tapped' : h.includes('wa.me') ? 'WhatsApp tapped' : h.includes('buy.stripe.com') ? 'Book and pay tapped' : h.startsWith('mailto:') ? 'Email tapped' : '';
+  if (n) goatcounter.count({ path: n.toLowerCase().replace(/ /g, '-'), title: n, event: true });
+});
+</script>
 </body>
 </html>

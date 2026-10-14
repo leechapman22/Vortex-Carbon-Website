@@ -1115,5 +1115,15 @@ const Films = (() => {
 
 </script>
 
+<!-- Visit counter (GoatCounter: no cookies, no personal data). Numbers at vortexcarbon.goatcounter.com -->
+<script data-goatcounter="https://vortexcarbon.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+document.addEventListener('click', e => {
+  const a = e.target.closest('a'); if (!a || !window.goatcounter || !goatcounter.count) return;
+  const h = a.getAttribute('href') || '';
+  const n = h === '#book' ? 'Book tapped' : h.startsWith('tel:') ? 'Call tapped' : h.includes('wa.me') ? 'WhatsApp tapped' : h.includes('buy.stripe.com') ? 'Book and pay tapped' : h.startsWith('mailto:') ? 'Email tapped' : '';
+  if (n) goatcounter.count({ path: n.toLowerCase().replace(/ /g, '-'), title: n, event: true });
+});
+</script>
 </body>
 </html>
